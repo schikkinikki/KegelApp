@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:KegelApp/models/MembersListClass.dart';
-import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,26 +9,30 @@ class DropDownMenu extends StatefulWidget {
   _DropDownMenuState createState() => _DropDownMenuState();
 }
 
+String dropDownValue;
+
 class _DropDownMenuState extends State<DropDownMenu> {
   @override
   Widget build(BuildContext context) {
     final memberData = Provider.of<MemberListClass>(context);
     final memberlist = memberData.member;
-    Kegelbruder dropPlayer = memberlist[0];
+    final memberNames = memberData.getPlayerNames();
 
     return DropdownButton(
-        value: memberData.getPlayer(dropPlayer),
-        items:
-            memberlist.map<DropdownMenuItem<Kegelbruder>>((Kegelbruder player) {
+      value: dropDownValue,
+      items: memberNames.map<DropdownMenuItem<String>>(
+        (String value) {
           return DropdownMenuItem(
-            value: player,
-            child: Text(player.name),
+            child: Text(value),
+            value: value,
           );
-        }).toList(),
-        onChanged: (Kegelbruder player) {
-          dropPlayer = player;
-          memberData.changeSelection(player);
-          print(player.name + player.isSelected.toString());
+        },
+      ).toList(),
+      onChanged: (String newValue) {
+        setState(() {
+          dropDownValue = newValue;
         });
+      },
+    );
   }
 }

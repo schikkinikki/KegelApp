@@ -30,8 +30,11 @@ class MemberListClass extends ChangeNotifier {
     notifyListeners();
   }
 
-  Kegelbruder getPlayer(Kegelbruder player) {
-    memberlist.firstWhere((element) => element.name == player.name);
-    notifyListeners();
+  List<String> getPlayerNames() {
+    List<String> playerNames = [];
+    memberlist.forEach((player) {
+      playerNames.add(player.name);
+    });
+    return playerNames;
   }
 }

@@ -42,6 +42,14 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
         child: Column(
           children: [
             DropDownMenu(),
+            //TODO map the list of punishment to the itemBuilder
+            Container(
+              height: 400,
+              child: ListView.builder(
+                itemBuilder: null,
+                itemCount: null,
+              ),
+            )
           ],
         ),
       ),

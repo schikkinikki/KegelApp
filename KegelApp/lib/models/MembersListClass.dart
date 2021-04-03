@@ -37,4 +37,23 @@ class MemberListClass extends ChangeNotifier {
     });
     return playerNames;
   }
+
+  Map<String, dynamic> getStrafen(Kegelbruder player) {
+    var strafenList = {};
+    memberlist.where((element) {
+      if (element.name == player.name) {
+        strafenList["Anwesenheit"] = element.erschienen;
+        strafenList["Pumpe"] = element.pumpen;
+        strafenList["Klingeln"] = element.klingel;
+        strafenList["Stina"] = element.mittenDurch;
+        strafenList["Durchwurf"] = element.durchWurf;
+        strafenList["Handy"] = element.telefon;
+        strafenList["Kugel bringen"] = element.kugelbringen;
+        strafenList["zu Zweit auf Bahn"] = element.zuZweitaufDerBahn;
+        strafenList["Lustwurf"] = element.lustWurf;
+      }
+      return true;
+    });
+    return strafenList;
+  }
 }

@@ -79,4 +79,40 @@ class Kegelbruder extends ChangeNotifier {
   int get lustWurf {
     return lustwurf;
   }
+
+  set set_pumpe(int pumpe) {
+    this.pumpe = pumpe;
+  }
+
+  set set_klingeln(int klingeln) {
+    this.klingeln = klingeln;
+  }
+
+  set set_anwesenheit(bool anwesenheit) {
+    this.anwesenheit = anwesenheit;
+  }
+
+  set set_mittenDurch(int mittenDurch) {
+    this.stina = mittenDurch;
+  }
+
+  set set_durchWurf(int durchWurf) {
+    this.durchwurf = durchwurf;
+  }
+
+  set set_handy(int handy) {
+    this.handy = handy;
+  }
+
+  set set_kugelBringen(int kugelBringen) {
+    this.kugelBringen = kugelBringen;
+  }
+
+  set set_lustwurf(int lustWurf) {
+    this.lustwurf = lustWurf;
+  }
+
+  set set_zuZweitaufDerBahn(int zuZweitaufDerBahn) {
+    this.zweiPersonenAufDerBahn = zuZweitaufDerBahn;
+  }
 }

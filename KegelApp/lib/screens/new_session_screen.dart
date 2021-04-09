@@ -16,6 +16,18 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
   Widget build(BuildContext context) {
     final memberData = Provider.of<MemberListClass>(context);
     final memberlist = memberData.member;
+    final List<String> strafenUiListe = [
+      "Pumpe",
+      "Klingeln",
+      "Stina",
+      "Durchwurf",
+      "Handy",
+      "Kugel bringen",
+      "Zu 2. auf der Bahn",
+      "Lustwurf"
+    ];
+
+    var strafenCounter = 0;
 
     return Scaffold(
       appBar: AppBar(
@@ -42,14 +54,52 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
         child: Column(
           children: [
             DropDownMenu(),
-            //TODO map the list of punishment to the itemBuilder
-            // Container(
-            //   height: 400,
-            //   child: ListView.builder(
-            //     itemBuilder: null,
-            //     itemCount: null,
-            //   ),
-            // )
+            Container(
+              height: 500,
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 5,
+                    margin: EdgeInsets.all(5),
+                    child: ListTile(
+                      leading: Container(
+                        margin: EdgeInsets.all(5),
+                        width: 80,
+                        child: Text(
+                          strafenUiListe[index],
+                        ),
+                      ),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                              icon: Icon(Icons.add_circle),
+                              onPressed: () => strafenCounter++),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                            ),
+                            child: Text("      " +
+                                strafenCounter.toString() +
+                                "      "),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          IconButton(
+                              icon: Icon(Icons.remove_circle),
+                              onPressed: () => strafenCounter--)
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                itemCount: strafenUiListe.length,
+              ),
+            )
           ],
         ),
       ),

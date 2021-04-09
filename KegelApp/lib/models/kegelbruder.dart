@@ -6,7 +6,6 @@ class Kegelbruder extends ChangeNotifier {
   bool isKing;
   bool isPumpenKing;
   bool isSelected = false;
-  bool anwesenheit;
   int pumpe;
   int klingeln;
   int stina;
@@ -23,7 +22,6 @@ class Kegelbruder extends ChangeNotifier {
       @required this.name,
       this.isKing,
       this.isPumpenKing,
-      this.anwesenheit,
       this.pumpe,
       this.klingeln,
       this.stina,
@@ -42,10 +40,6 @@ class Kegelbruder extends ChangeNotifier {
       isSelected = true;
     }
     notifyListeners();
-  }
-
-  bool get erschienen {
-    return anwesenheit;
   }
 
   int get pumpen {
@@ -86,10 +80,6 @@ class Kegelbruder extends ChangeNotifier {
 
   set set_klingeln(int klingeln) {
     this.klingeln = klingeln;
-  }
-
-  set set_anwesenheit(bool anwesenheit) {
-    this.anwesenheit = anwesenheit;
   }
 
   set set_mittenDurch(int mittenDurch) {

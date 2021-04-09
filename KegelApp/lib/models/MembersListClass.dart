@@ -38,11 +38,14 @@ class MemberListClass extends ChangeNotifier {
     return playerNames;
   }
 
+  Kegelbruder getOnePlayer(String name) {
+    return memberlist.firstWhere((element) => element.name == name);
+  }
+
   Map<String, dynamic> getStrafen(Kegelbruder player) {
     var strafenList = {};
     memberlist.where((element) {
       if (element.name == player.name) {
-        strafenList["Anwesenheit"] = element.erschienen;
         strafenList["Pumpe"] = element.pumpen;
         strafenList["Klingeln"] = element.klingel;
         strafenList["Stina"] = element.mittenDurch;

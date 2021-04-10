@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:KegelApp/models/MembersListClass.dart';
+import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +17,18 @@ class _DropDownMenuState extends State<DropDownMenu> {
     final memberlist = memberData.member;
     final memberNames = memberData.getPlayerNames();
 
+    Kegelbruder getSelectedPlayer(String name) {
+      memberlist.forEach((element) {
+        if (element.name == name) {
+          element.setSelected();
+        }
+        if (element.name != name) {
+          element.isSelected = false;
+        }
+        print(element.name + element.isSelected.toString());
+      });
+    }
+
     return DropdownButton(
       value: dropDownValue,
       items: memberNames.map<DropdownMenuItem<String>>(
@@ -31,6 +42,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
       onChanged: (String newValue) {
         setState(() {
           dropDownValue = newValue;
+          getSelectedPlayer(dropDownValue);
         });
       },
     );

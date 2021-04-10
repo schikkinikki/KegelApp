@@ -20,16 +20,6 @@ class MemberListClass extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changeSelection(Kegelbruder player) {
-    memberlist.where((element) {
-      if (element.name == player.name) {
-        element.setSelected();
-      }
-      return true;
-    });
-    notifyListeners();
-  }
-
   List<String> getPlayerNames() {
     List<String> playerNames = [];
     memberlist.forEach((player) {

@@ -32,21 +32,56 @@ class MemberListClass extends ChangeNotifier {
     return memberlist.firstWhere((element) => element.name == name);
   }
 
-  Map<String, dynamic> getStrafen(Kegelbruder player) {
-    var strafenList = {};
-    memberlist.where((element) {
-      if (element.name == player.name) {
-        strafenList["Pumpe"] = element.pumpen;
-        strafenList["Klingeln"] = element.klingel;
-        strafenList["Stina"] = element.mittenDurch;
-        strafenList["Durchwurf"] = element.durchWurf;
-        strafenList["Handy"] = element.telefon;
-        strafenList["Kugel bringen"] = element.kugelbringen;
-        strafenList["zu Zweit auf Bahn"] = element.zuZweitaufDerBahn;
-        strafenList["Lustwurf"] = element.lustWurf;
+  void setStrafen(int index, String strafen) {
+    memberlist.forEach((player) {
+      List<int> strafenliste = player.strafenListen;
+      while (player.isSelected == true) {
+        switch (strafen) {
+          case "Pumpe":
+            strafenliste[index]++;
+            player.setPumpe(strafenliste[index]);
+            print(player.name + player.pumpen.toString());
+            break;
+          case "Klingeln":
+            strafenliste[index]++;
+            player.setKlingeln(strafenliste[index]);
+            break;
+          case "Stina":
+            strafenliste[index]++;
+            player.setMittenDurch(strafenliste[index]);
+            break;
+          case "Durchwurf":
+            strafenliste[index]++;
+            player.setDurchWurf(strafenliste[index]);
+            break;
+          case "Handy":
+            strafenliste[index]++;
+            player.setHandy(strafenliste[index]);
+            break;
+          case "Kugel bringen":
+            strafenliste[index]++;
+            player.setKugelBringen(strafenliste[index]);
+            break;
+          case "Zu 2. auf der Bahn":
+            strafenliste[index]++;
+            player.setZuZweitaufDerBahn(strafenliste[index]);
+            break;
+          case "Lustwurf":
+            strafenliste[index]++;
+            player.setLustwurf(strafenliste[index]);
+            break;
+          default:
+            break;
+        }
+        return;
       }
-      return true;
     });
-    return strafenList;
+    notifyListeners();
+  }
+
+  int getOneStrafe(int index) {
+    Kegelbruder player = memberlist.firstWhere((element) => element.isSelected,
+        orElse: () => new Kegelbruder(name: null));
+    return player.getSingleStrafe(index);
   }
 }

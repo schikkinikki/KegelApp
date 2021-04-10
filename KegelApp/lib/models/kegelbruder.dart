@@ -6,14 +6,14 @@ class Kegelbruder extends ChangeNotifier {
   bool isKing;
   bool isPumpenKing;
   bool isSelected = false;
-  int pumpe;
-  int klingeln;
-  int stina;
-  int durchwurf;
-  int handy;
-  int kugelBringen;
-  int zweiPersonenAufDerBahn;
-  int lustwurf;
+  int pumpe = 0;
+  int klingeln = 0;
+  int stina = 0;
+  int durchwurf = 0;
+  int handy = 0;
+  int kugelBringen = 0;
+  int zweiPersonenAufDerBahn = 0;
+  int lustwurf = 0;
 
   Kegelbruder.c2();
 
@@ -33,6 +33,16 @@ class Kegelbruder extends ChangeNotifier {
 
   Kegelbruder get spieler {
     return spieler;
+  }
+
+  List<int> strafenListe = [0, 0, 0, 0, 0, 0, 0, 0];
+
+  List<int> get strafenListen {
+    return strafenListe;
+  }
+
+  int getSingleStrafe(int index) {
+    return strafenListe[index];
   }
 
   void setSelected() {
@@ -74,35 +84,43 @@ class Kegelbruder extends ChangeNotifier {
     return lustwurf;
   }
 
-  set set_pumpe(int pumpe) {
-    this.pumpe = pumpe;
+  void setPumpe(int strafe) {
+    this.pumpe = strafe;
+    notifyListeners();
   }
 
-  set set_klingeln(int klingeln) {
+  void setKlingeln(int klingeln) {
     this.klingeln = klingeln;
+    notifyListeners();
   }
 
-  set set_mittenDurch(int mittenDurch) {
+  void setMittenDurch(int mittenDurch) {
     this.stina = mittenDurch;
+    notifyListeners();
   }
 
-  set set_durchWurf(int durchWurf) {
+  void setDurchWurf(int durchWurf) {
     this.durchwurf = durchwurf;
+    notifyListeners();
   }
 
-  set set_handy(int handy) {
+  void setHandy(int handy) {
     this.handy = handy;
+    notifyListeners();
   }
 
-  set set_kugelBringen(int kugelBringen) {
+  void setKugelBringen(int kugelBringen) {
     this.kugelBringen = kugelBringen;
+    notifyListeners();
   }
 
-  set set_lustwurf(int lustWurf) {
+  void setLustwurf(int lustWurf) {
     this.lustwurf = lustWurf;
+    notifyListeners();
   }
 
-  set set_zuZweitaufDerBahn(int zuZweitaufDerBahn) {
+  void setZuZweitaufDerBahn(int zuZweitaufDerBahn) {
     this.zweiPersonenAufDerBahn = zuZweitaufDerBahn;
+    notifyListeners();
   }
 }

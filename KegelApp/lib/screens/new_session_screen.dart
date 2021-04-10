@@ -27,8 +27,6 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
       "Lustwurf"
     ];
 
-    var strafenCounter = 0;
-
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -74,7 +72,12 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                         children: [
                           IconButton(
                               icon: Icon(Icons.add_circle),
-                              onPressed: () => strafenCounter++),
+                              onPressed: () {
+                                setState(() {
+                                  memberData.setStrafen(
+                                      index, strafenUiListe[index]);
+                                });
+                              }),
                           SizedBox(
                             width: 20,
                           ),
@@ -82,16 +85,16 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.black),
                             ),
-                            child: Text("      " +
-                                strafenCounter.toString() +
-                                "      "),
+                            child: Text("    " +
+                                memberData.getOneStrafe(index).toString() +
+                                "    "),
                           ),
                           SizedBox(
                             width: 20,
                           ),
                           IconButton(
                               icon: Icon(Icons.remove_circle),
-                              onPressed: () => strafenCounter--)
+                              onPressed: () => null)
                         ],
                       ),
                     ),

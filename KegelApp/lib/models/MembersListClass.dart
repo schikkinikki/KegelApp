@@ -79,6 +79,53 @@ class MemberListClass extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setStrafenLower(int index, String strafen) {
+    memberlist.forEach((player) {
+      List<int> strafenliste = player.strafenListen;
+      while (player.isSelected == true) {
+        switch (strafen) {
+          case "Pumpe":
+            strafenliste[index]--;
+            player.setPumpe(strafenliste[index]);
+            print(player.name + player.pumpen.toString());
+            break;
+          case "Klingeln":
+            strafenliste[index]--;
+            player.setKlingeln(strafenliste[index]);
+            break;
+          case "Stina":
+            strafenliste[index]--;
+            player.setMittenDurch(strafenliste[index]);
+            break;
+          case "Durchwurf":
+            strafenliste[index]--;
+            player.setDurchWurf(strafenliste[index]);
+            break;
+          case "Handy":
+            strafenliste[index]--;
+            player.setHandy(strafenliste[index]);
+            break;
+          case "Kugel bringen":
+            strafenliste[index]--;
+            player.setKugelBringen(strafenliste[index]);
+            break;
+          case "Zu 2. auf der Bahn":
+            strafenliste[index]--;
+            player.setZuZweitaufDerBahn(strafenliste[index]);
+            break;
+          case "Lustwurf":
+            strafenliste[index]--;
+            player.setLustwurf(strafenliste[index]);
+            break;
+          default:
+            break;
+        }
+        return;
+      }
+    });
+    notifyListeners();
+  }
+
   int getOneStrafe(int index) {
     Kegelbruder player = memberlist.firstWhere((element) => element.isSelected,
         orElse: () => new Kegelbruder(name: null));

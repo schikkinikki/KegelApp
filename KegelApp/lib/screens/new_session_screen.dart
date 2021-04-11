@@ -94,7 +94,12 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                           ),
                           IconButton(
                               icon: Icon(Icons.remove_circle),
-                              onPressed: () => null)
+                              onPressed: () {
+                                setState(() {
+                                  memberData.setStrafenLower(
+                                      index, strafenUiListe[index]);
+                                });
+                              })
                         ],
                       ),
                     ),

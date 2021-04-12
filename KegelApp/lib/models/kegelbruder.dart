@@ -33,6 +33,22 @@ class Kegelbruder extends ChangeNotifier {
     return spieler;
   }
 
+  //Map for database
+  Map<String, dynamic> toMap() {
+    return {
+      "name": name,
+      "pumpe": pumpe,
+      "klingeln": klingeln,
+      "stina": stina,
+      "durchwurf": durchwurf,
+      "handy": handy,
+      "kugelbringen": kugelBringen,
+      "lustwurf": lustwurf,
+      "zweiPersonenAufDerBahn": zweiPersonenAufDerBahn,
+    };
+  }
+
+  //needed for strafen-Ui
   List<int> strafenListe = [0, 0, 0, 0, 0, 0, 0, 0];
 
   List<int> get strafenListen {

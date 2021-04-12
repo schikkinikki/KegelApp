@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 class Kegelbruder extends ChangeNotifier {
-  String id;
   String name;
   bool isKing;
   bool isPumpenKing;
@@ -18,8 +17,7 @@ class Kegelbruder extends ChangeNotifier {
   Kegelbruder.c2();
 
   Kegelbruder(
-      {this.id,
-      @required this.name,
+      {@required this.name,
       this.isKing,
       this.isPumpenKing,
       this.pumpe,

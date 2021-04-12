@@ -64,4 +64,12 @@ class DBProvider {
     final db = await database;
     await db.delete("kegelbruder", where: "name = ?", whereArgs: [name]);
   }
+
+  //update a entrie from the database
+  updateKegelbruder(Kegelbruder kegelbruder) async {
+    final db = await database;
+    var res = await db.update("kegelbruder", kegelbruder.toMap(),
+        where: "name", whereArgs: [kegelbruder.name]);
+    return res;
+  }
 }

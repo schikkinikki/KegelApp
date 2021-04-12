@@ -33,6 +33,20 @@ class Kegelbruder extends ChangeNotifier {
     return spieler;
   }
 
+  //fromMap for database
+  factory Kegelbruder.fromMap(Map<String, dynamic> json) {
+    return new Kegelbruder(
+        name: json["name"],
+        pumpe: json["pumpe"],
+        klingeln: json["klingeln"],
+        stina: json["stina"],
+        durchwurf: json["durchwurf"],
+        handy: json["handy"],
+        kugelBringen: json["kugelbringen"],
+        lustwurf: json["lustwurf"],
+        zweiPersonenAufDerBahn: json["zweiPersonenAufDerBahn"]);
+  }
+
   //Map for database
   Map<String, dynamic> toMap() {
     return {

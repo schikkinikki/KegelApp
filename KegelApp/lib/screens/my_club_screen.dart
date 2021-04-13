@@ -1,3 +1,4 @@
+import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,9 @@ class _MyClubScreenState extends State<MyClubScreen> {
                             Kegelbruder spieler =
                                 Kegelbruder(name: myController.text);
                             memberlist.addMember(spieler);
+                            DBProvider.db.addKegelbruder(spieler);
                             myController.clear();
+                            setState(() {});
                             Navigator.of(context).pop();
                           },
                           child: Text("Hinzufügen"),
@@ -65,61 +68,83 @@ class _MyClubScreenState extends State<MyClubScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final memberData = Provider.of<MemberListClass>(context);
-    final memberlist = memberData.member;
-
     return Column(
       children: [
-        Container(
-          height: 460,
-          padding: EdgeInsets.all(10),
-          child: ListView.builder(
-            itemBuilder: (context, index) {
+        FutureBuilder<List<Kegelbruder>>(
+          future: DBProvider.db.getAllKegelbruder(),
+          builder: (BuildContext context,
+              AsyncSnapshot<List<Kegelbruder>> snapshot) {
+            final memberData = Provider.of<MemberListClass>(context);
+            final memberlist = memberData.member;
+            if (snapshot.hasData) {
               return Container(
-                padding: EdgeInsets.all(3),
-                width: 350,
-                margin: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.grey, style: BorderStyle.solid),
-                    borderRadius: BorderRadius.circular(15),
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.topRight,
-                      colors: [Colors.orange, Colors.deepOrange],
-                    )),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.perm_identity,
-                      size: 32,
-                    ),
-                    Text(
-                      memberlist[index].name,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.delete,
-                        size: 32,
-                      ),
-                      onPressed: () =>
-                          memberData.deleteMember(memberlist[index]),
-                    ),
-                  ],
-                ),
+                height: 460,
+                padding: EdgeInsets.all(10),
+                child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      Kegelbruder player = snapshot.data[index];
+                      return Container(
+                        padding: EdgeInsets.all(3),
+                        width: 350,
+                        margin: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.grey, style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topRight,
+                              colors: [Colors.orange, Colors.deepOrange],
+                            )),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(
+                              Icons.perm_identity,
+                              size: 32,
+                            ),
+                            Text(
+                              player.name,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            IconButton(
+                                icon: Icon(
+                                  Icons.delete,
+                                  size: 32,
+                                ),
+                                onPressed: () {
+                                  DBProvider.db.deleteKegelbruder(player.name);
+                                  memberData.deleteMember(player);
+                                  setState(() {});
+                                }),
+                          ],
+                        ),
+                      );
+                    },
+                    itemCount: snapshot.data.length),
               );
-            },
-            itemCount: memberlist.length,
-          ),
+            } else {
+              return Center(
+                child: Text("Bitte Spieler hinzufügen"),
+              );
+            }
+          },
         ),
-        RaisedButton.icon(
-          onPressed: () => addMember(memberData),
-          icon: Icon(Icons.person_add),
-          label: Text("Clubmitglied hinzufügen"),
-          color: Colors.deepOrange,
-        )
+        FutureBuilder(
+          future: DBProvider.db.getAllKegelbruder(),
+          builder: (context, snapshot) {
+            final memberData = Provider.of<MemberListClass>(context);
+            return RaisedButton.icon(
+              onPressed: () {
+                addMember(memberData);
+                print(snapshot.data.toString());
+              },
+              icon: Icon(Icons.person_add),
+              label: Text("Clubmitglied hinzufügen"),
+              color: Colors.deepOrange,
+            );
+          },
+        ),
       ],
     );
   }

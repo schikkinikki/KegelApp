@@ -84,6 +84,7 @@ class Kegelbruder extends ChangeNotifier {
     return strafenListe[index];
   }
 
+  //change selection, needed for DropDownButton Widget
   void setSelected() {
     if (!isSelected) {
       isSelected = true;
@@ -91,6 +92,7 @@ class Kegelbruder extends ChangeNotifier {
     notifyListeners();
   }
 
+//getters and setters
   int get pumpen {
     return pumpe;
   }

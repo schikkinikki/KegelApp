@@ -1,3 +1,4 @@
+import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +49,7 @@ class _MyClubScreenState extends State<MyClubScreen> {
                             Kegelbruder spieler =
                                 Kegelbruder(name: myController.text);
                             memberlist.addMember(spieler);
+                            DBProvider.db.addKegelbruder(spieler);
                             myController.clear();
                             Navigator.of(context).pop();
                           },
@@ -70,49 +72,56 @@ class _MyClubScreenState extends State<MyClubScreen> {
 
     return Column(
       children: [
-        Container(
-          height: 460,
-          padding: EdgeInsets.all(10),
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return Container(
-                padding: EdgeInsets.all(3),
-                width: 350,
-                margin: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.grey, style: BorderStyle.solid),
-                    borderRadius: BorderRadius.circular(15),
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.topRight,
-                      colors: [Colors.orange, Colors.deepOrange],
-                    )),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.perm_identity,
-                      size: 32,
-                    ),
-                    Text(
-                      memberlist[index].name,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.delete,
-                        size: 32,
+        FutureBuilder<List<Kegelbruder>>(
+          future: DBProvider.db.getAllKegelbruder(),
+          builder: (BuildContext context,
+              AsyncSnapshot<List<Kegelbruder>> snapshot) {
+            return Container(
+              height: 460,
+              padding: EdgeInsets.all(10),
+              child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    Kegelbruder player = snapshot.data[index];
+                    return Container(
+                      padding: EdgeInsets.all(3),
+                      width: 350,
+                      margin: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: Colors.grey, style: BorderStyle.solid),
+                          borderRadius: BorderRadius.circular(15),
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [Colors.orange, Colors.deepOrange],
+                          )),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            Icons.perm_identity,
+                            size: 32,
+                          ),
+                          Text(
+                            player.name,
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          IconButton(
+                              icon: Icon(
+                                Icons.delete,
+                                size: 32,
+                              ),
+                              onPressed: () {
+                                DBProvider.db.deleteKegelbruder(player.name);
+                                memberData.deleteMember(player);
+                              }),
+                        ],
                       ),
-                      onPressed: () =>
-                          memberData.deleteMember(memberlist[index]),
-                    ),
-                  ],
-                ),
-              );
-            },
-            itemCount: memberlist.length,
-          ),
+                    );
+                  },
+                  itemCount: snapshot.data.length),
+            );
+          },
         ),
         RaisedButton.icon(
           onPressed: () => addMember(memberData),

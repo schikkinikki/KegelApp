@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'dart:convert';
 
 class Kegelbruder extends ChangeNotifier {
   String name;
@@ -31,6 +32,16 @@ class Kegelbruder extends ChangeNotifier {
 
   Kegelbruder get spieler {
     return spieler;
+  }
+
+  Kegelbruder clientFromJson(String str) {
+    final jsonData = json.decode(str);
+    return Kegelbruder.fromMap(jsonData);
+  }
+
+  String clientToJson(Kegelbruder data) {
+    final dyn = data.toMap();
+    return json.encode(dyn);
   }
 
   //fromMap for database

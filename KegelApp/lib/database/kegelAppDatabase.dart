@@ -27,45 +27,37 @@ class DBProvider {
     }, version: 1);
   }
 
-  //adding a new entrie to the database
+  //adding a new entrys to the database
   addKegelbruder(Kegelbruder newKegelbruder) async {
     final db = await database;
-
-    var res = await db.rawInsert(
-        '''INSERT INTO kegelbruder (name, pumpe, klingeln, stina, durchwurf, handy, kugelbringen, lustwurf, zweiPersonenAufDerBahn) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
-        [
-          newKegelbruder.name,
-          newKegelbruder.pumpe,
-          newKegelbruder.klingeln,
-          newKegelbruder.stina,
-          newKegelbruder.durchwurf,
-          newKegelbruder.handy,
-          newKegelbruder.kugelBringen,
-          newKegelbruder.lustwurf,
-          newKegelbruder.zweiPersonenAufDerBahn
-        ]);
+    var res = await db.insert("kegelbruder", newKegelbruder.toMap());
     return res;
   }
 
-  //getting a entrie from the database
-  Future<dynamic> getKegelbruder() async {
+  //getting a entrys from the database
+  Future<dynamic> getKegelbruder(String name) async {
     final db = await database;
-    var res = await db.query("kegelbruder");
-    if (res.length == 0) {
-      return null;
-    } else {
-      var resMap = res[0];
-      return resMap.isEmpty ? resMap : null;
-    }
+    var res =
+        await db.query("kegelbruder", where: "name = ?", whereArgs: [name]);
+    return res.isNotEmpty ? Kegelbruder.fromMap(res.first) : null;
   }
 
-  //delete a entrie from the database
+  //getting all entrys from the database
+  Future<dynamic> getAllKegelbruder() async {
+    final db = await database;
+    var res = await db.query("kegelbruder");
+    List<Kegelbruder> list =
+        res.isNotEmpty ? res.map((e) => Kegelbruder.fromMap(e)).toList() : [];
+    return list;
+  }
+
+  //delete a entrys from the database
   deleteKegelbruder(String name) async {
     final db = await database;
     await db.delete("kegelbruder", where: "name = ?", whereArgs: [name]);
   }
 
-  //update a entrie from the database
+  //update a entrys from the database
   updateKegelbruder(Kegelbruder kegelbruder) async {
     final db = await database;
     var res = await db.update("kegelbruder", kegelbruder.toMap(),

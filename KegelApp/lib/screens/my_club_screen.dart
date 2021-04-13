@@ -51,6 +51,7 @@ class _MyClubScreenState extends State<MyClubScreen> {
                             memberlist.addMember(spieler);
                             DBProvider.db.addKegelbruder(spieler);
                             myController.clear();
+                            setState(() {});
                             Navigator.of(context).pop();
                           },
                           child: Text("Hinzufügen"),
@@ -67,68 +68,83 @@ class _MyClubScreenState extends State<MyClubScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final memberData = Provider.of<MemberListClass>(context);
-    final memberlist = memberData.member;
-
     return Column(
       children: [
         FutureBuilder<List<Kegelbruder>>(
           future: DBProvider.db.getAllKegelbruder(),
           builder: (BuildContext context,
               AsyncSnapshot<List<Kegelbruder>> snapshot) {
-            return Container(
-              height: 460,
-              padding: EdgeInsets.all(10),
-              child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    Kegelbruder player = snapshot.data[index];
-                    return Container(
-                      padding: EdgeInsets.all(3),
-                      width: 350,
-                      margin: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.grey, style: BorderStyle.solid),
-                          borderRadius: BorderRadius.circular(15),
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topRight,
-                            colors: [Colors.orange, Colors.deepOrange],
-                          )),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            Icons.perm_identity,
-                            size: 32,
-                          ),
-                          Text(
-                            player.name,
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          IconButton(
-                              icon: Icon(
-                                Icons.delete,
-                                size: 32,
-                              ),
-                              onPressed: () {
-                                DBProvider.db.deleteKegelbruder(player.name);
-                                memberData.deleteMember(player);
-                              }),
-                        ],
-                      ),
-                    );
-                  },
-                  itemCount: snapshot.data.length),
+            final memberData = Provider.of<MemberListClass>(context);
+            final memberlist = memberData.member;
+            if (snapshot.hasData) {
+              return Container(
+                height: 460,
+                padding: EdgeInsets.all(10),
+                child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      Kegelbruder player = snapshot.data[index];
+                      return Container(
+                        padding: EdgeInsets.all(3),
+                        width: 350,
+                        margin: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.grey, style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topRight,
+                              colors: [Colors.orange, Colors.deepOrange],
+                            )),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(
+                              Icons.perm_identity,
+                              size: 32,
+                            ),
+                            Text(
+                              player.name,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            IconButton(
+                                icon: Icon(
+                                  Icons.delete,
+                                  size: 32,
+                                ),
+                                onPressed: () {
+                                  DBProvider.db.deleteKegelbruder(player.name);
+                                  memberData.deleteMember(player);
+                                  setState(() {});
+                                }),
+                          ],
+                        ),
+                      );
+                    },
+                    itemCount: snapshot.data.length),
+              );
+            } else {
+              return Center(
+                child: Text("Bitte Spieler hinzufügen"),
+              );
+            }
+          },
+        ),
+        FutureBuilder(
+          future: DBProvider.db.getAllKegelbruder(),
+          builder: (context, snapshot) {
+            final memberData = Provider.of<MemberListClass>(context);
+            return RaisedButton.icon(
+              onPressed: () {
+                addMember(memberData);
+                print(snapshot.data.toString());
+              },
+              icon: Icon(Icons.person_add),
+              label: Text("Clubmitglied hinzufügen"),
+              color: Colors.deepOrange,
             );
           },
         ),
-        RaisedButton.icon(
-          onPressed: () => addMember(memberData),
-          icon: Icon(Icons.person_add),
-          label: Text("Clubmitglied hinzufügen"),
-          color: Colors.deepOrange,
-        )
       ],
     );
   }

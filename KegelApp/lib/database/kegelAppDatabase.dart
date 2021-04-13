@@ -23,7 +23,7 @@ class DBProvider {
     return await openDatabase(join(await getDatabasesPath(), "kegelApp.db"),
         onCreate: (db, version) async {
       await db.execute(
-          '''CREATE TABELE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER)''');
+          '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER)''');
     }, version: 1);
   }
 
@@ -43,7 +43,7 @@ class DBProvider {
   }
 
   //getting all entrys from the database
-  Future<dynamic> getAllKegelbruder() async {
+  Future<List<Kegelbruder>> getAllKegelbruder() async {
     final db = await database;
     var res = await db.query("kegelbruder");
     List<Kegelbruder> list =

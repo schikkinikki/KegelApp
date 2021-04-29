@@ -23,7 +23,7 @@ class DBProvider {
     return await openDatabase(join(await getDatabasesPath(), "kegelApp.db"),
         onCreate: (db, version) async {
       await db.execute(
-          '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER)''');
+          '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, isSelected INTEGER)''');
     }, version: 1);
   }
 
@@ -62,6 +62,14 @@ class DBProvider {
     final db = await database;
     var res = await db.update("kegelbruder", kegelbruder.toMap(),
         where: "name", whereArgs: [kegelbruder.name]);
+    return res;
+  }
+
+  //update selection
+  updateKegelbruderSelection(Kegelbruder kegelbruder) async {
+    final db = await database;
+    var res = await db
+        .rawUpdate("UPDATE kegelbruder SET isSelected = ? WHERE name = ?");
     return res;
   }
 }

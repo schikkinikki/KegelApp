@@ -1,6 +1,6 @@
 import 'package:KegelApp/models/MembersListClass.dart';
-import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/widgets/DropDownMenu.dart';
+import 'package:KegelApp/widgets/NewDropDownMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +15,6 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
   @override
   Widget build(BuildContext context) {
     final memberData = Provider.of<MemberListClass>(context);
-    final memberlist = memberData.member;
     final List<String> strafenUiListe = [
       "Pumpe",
       "Klingeln",
@@ -38,6 +37,16 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
             ),
           ),
         ),
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (_) => [
+              PopupMenuItem(
+                child: Text("Session beenden"),
+              ),
+            ],
+            icon: Icon(Icons.more_vert),
+          )
+        ],
         title: Text(
           "Kegelabend",
           style: TextStyle(
@@ -51,7 +60,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
       body: Center(
         child: Column(
           children: [
-            DropDownMenu(),
+            NewDropDownMenu(),
             Container(
               height: 500,
               child: ListView.builder(

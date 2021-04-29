@@ -5,7 +5,7 @@ class Kegelbruder extends ChangeNotifier {
   String name;
   bool isKing;
   bool isPumpenKing;
-  bool isSelected = false;
+  int isSelected = 0;
   int pumpe = 0;
   int klingeln = 0;
   int stina = 0;
@@ -86,8 +86,8 @@ class Kegelbruder extends ChangeNotifier {
 
   //change selection, needed for DropDownButton Widget
   void setSelected() {
-    if (!isSelected) {
-      isSelected = true;
+    if (isSelected == 0) {
+      isSelected = 1;
     }
     notifyListeners();
   }

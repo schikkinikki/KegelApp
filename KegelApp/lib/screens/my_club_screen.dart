@@ -137,7 +137,7 @@ class _MyClubScreenState extends State<MyClubScreen> {
             return RaisedButton.icon(
               onPressed: () {
                 addMember(memberData);
-                print(snapshot.data.toString());
+                print(memberData);
               },
               icon: Icon(Icons.person_add),
               label: Text("Clubmitglied hinzufügen"),

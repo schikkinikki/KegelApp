@@ -35,7 +35,7 @@ class MemberListClass extends ChangeNotifier {
   void setStrafen(int index, String strafen) {
     memberlist.forEach((player) {
       List<int> strafenliste = player.strafenListen;
-      while (player.isSelected == true) {
+      while (player.isSelected == 1) {
         switch (strafen) {
           case "Pumpe":
             strafenliste[index]++;
@@ -82,7 +82,7 @@ class MemberListClass extends ChangeNotifier {
   void setStrafenLower(int index, String strafen) {
     memberlist.forEach((player) {
       List<int> strafenliste = player.strafenListen;
-      while (player.isSelected == true) {
+      while (player.isSelected == 1) {
         switch (strafen) {
           case "Pumpe":
             strafenliste[index]--;
@@ -127,7 +127,8 @@ class MemberListClass extends ChangeNotifier {
   }
 
   int getOneStrafe(int index) {
-    Kegelbruder player = memberlist.firstWhere((element) => element.isSelected,
+    Kegelbruder player = memberlist.firstWhere(
+        (element) => element.isSelected == 1,
         orElse: () => new Kegelbruder(name: null));
     return player.getSingleStrafe(index);
   }

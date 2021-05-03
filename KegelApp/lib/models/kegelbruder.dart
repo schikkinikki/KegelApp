@@ -29,7 +29,7 @@ class Kegelbruder extends ChangeNotifier {
       this.kugelBringen,
       this.lustwurf,
       this.zweiPersonenAufDerBahn,
-      this.isSelected});
+      this.isSelected = 0});
 
   Kegelbruder get spieler {
     return spieler;
@@ -56,7 +56,8 @@ class Kegelbruder extends ChangeNotifier {
         handy: json["handy"],
         kugelBringen: json["kugelbringen"],
         lustwurf: json["lustwurf"],
-        zweiPersonenAufDerBahn: json["zweiPersonenAufDerBahn"]);
+        zweiPersonenAufDerBahn: json["zweiPersonenAufDerBahn"],
+        isSelected: json["isSelected"]);
   }
 
   //Map for database
@@ -71,6 +72,7 @@ class Kegelbruder extends ChangeNotifier {
       "kugelbringen": kugelBringen,
       "lustwurf": lustwurf,
       "zweiPersonenAufDerBahn": zweiPersonenAufDerBahn,
+      "isSelected": isSelected
     };
   }
 

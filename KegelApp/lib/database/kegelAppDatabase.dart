@@ -60,18 +60,19 @@ class DBProvider {
   //update a entry from the database
   updateKegelbruder(Kegelbruder kegelbruder) async {
     final db = await database;
-    var res = await db.update("kegelbruder", kegelbruder.toMap(),
-        where: "name", whereArgs: [kegelbruder.name]);
-    return res;
-  }
-
-  //update selection
-  updateKegelbruderSelection(Kegelbruder kegelbruder) async {
-    final db = await database;
-    var res = await db.rawUpdate(
-        "UPDATE kegelbruder SET isSelected = ? WHERE name = ?"[
-            kegelbruder.isSelected],
-        [kegelbruder.name.toString()]);
+    Kegelbruder updateBruder = Kegelbruder(
+        name: kegelbruder.name,
+        pumpe: kegelbruder.pumpe,
+        klingeln: kegelbruder.klingeln,
+        stina: kegelbruder.stina,
+        durchwurf: kegelbruder.durchwurf,
+        handy: kegelbruder.handy,
+        kugelBringen: kegelbruder.kugelBringen,
+        lustwurf: kegelbruder.lustwurf,
+        zweiPersonenAufDerBahn: kegelbruder.zweiPersonenAufDerBahn,
+        isSelected: kegelbruder.isSelected);
+    var res = await db.update("kegelbruder", updateBruder.toMap(),
+        where: "name = ?", whereArgs: [kegelbruder.name]);
     return res;
   }
 }

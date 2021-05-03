@@ -17,23 +17,11 @@ class _NewDropDownMenuState extends State<NewDropDownMenu> {
     final memberData = Provider.of<MemberListClass>(context);
     final memberlist = memberData.member;
 
-    Kegelbruder getSelectedPlayer(String name) {
-      memberlist.forEach((element) {
-        if (element.name == name) {
-          element.setSelected();
-        }
-        if (element.name != name) {
-          element.isSelected = 0;
-        }
-        print(element.name + element.isSelected.toString());
-      });
-    }
-
     void changeSelection(String name) async {
       Kegelbruder selectedPlayer = await DBProvider.db.getKegelbruder(name);
       print(selectedPlayer.name);
       selectedPlayer.setSelected();
-      await DBProvider.db.updateKegelbruderSelection(selectedPlayer);
+      await DBProvider.db.updateKegelbruder(selectedPlayer);
       print(selectedPlayer.isSelected.toString());
     }
 

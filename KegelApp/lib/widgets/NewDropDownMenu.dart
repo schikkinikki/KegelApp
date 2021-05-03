@@ -31,8 +31,9 @@ class _NewDropDownMenuState extends State<NewDropDownMenu> {
 
     void changeSelection(String name) async {
       Kegelbruder selectedPlayer = await DBProvider.db.getKegelbruder(name);
+      print(selectedPlayer.name);
       selectedPlayer.setSelected();
-      await DBProvider.db.updateKegelbruder(selectedPlayer);
+      await DBProvider.db.updateKegelbruderSelection(selectedPlayer);
       print(selectedPlayer.isSelected.toString());
     }
 
@@ -53,8 +54,7 @@ class _NewDropDownMenuState extends State<NewDropDownMenu> {
               onChanged: (String newValue) {
                 setState(() {
                   dropDownValue = newValue;
-                  print(newValue);
-                  changeSelection(dropDownValue);
+                  changeSelection(newValue);
                 });
               });
         } else {

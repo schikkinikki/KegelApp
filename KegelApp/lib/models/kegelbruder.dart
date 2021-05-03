@@ -28,7 +28,8 @@ class Kegelbruder extends ChangeNotifier {
       this.handy,
       this.kugelBringen,
       this.lustwurf,
-      this.zweiPersonenAufDerBahn});
+      this.zweiPersonenAufDerBahn,
+      this.isSelected});
 
   Kegelbruder get spieler {
     return spieler;

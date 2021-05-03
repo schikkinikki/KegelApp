@@ -51,13 +51,13 @@ class DBProvider {
     return list;
   }
 
-  //delete a entrys from the database
+  //delete a entry from the database
   deleteKegelbruder(String name) async {
     final db = await database;
     await db.delete("kegelbruder", where: "name = ?", whereArgs: [name]);
   }
 
-  //update a entrys from the database
+  //update a entry from the database
   updateKegelbruder(Kegelbruder kegelbruder) async {
     final db = await database;
     var res = await db.update("kegelbruder", kegelbruder.toMap(),
@@ -68,8 +68,10 @@ class DBProvider {
   //update selection
   updateKegelbruderSelection(Kegelbruder kegelbruder) async {
     final db = await database;
-    var res = await db
-        .rawUpdate("UPDATE kegelbruder SET isSelected = ? WHERE name = ?");
+    var res = await db.rawUpdate(
+        "UPDATE kegelbruder SET isSelected = ? WHERE name = ?"[
+            kegelbruder.isSelected],
+        [kegelbruder.name.toString()]);
     return res;
   }
 }

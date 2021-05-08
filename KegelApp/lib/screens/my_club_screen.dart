@@ -78,14 +78,14 @@ class _MyClubScreenState extends State<MyClubScreen> {
             final memberlist = memberData.member;
             if (snapshot.hasData) {
               return Container(
-                height: 460,
+                height: MediaQuery.of(context).size.height * 0.65,
                 padding: EdgeInsets.all(10),
                 child: ListView.builder(
                     itemBuilder: (context, index) {
                       Kegelbruder player = snapshot.data[index];
                       return Container(
                         padding: EdgeInsets.all(3),
-                        width: 300,
+                        width: 350,
                         margin: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             border: Border.all(

@@ -62,7 +62,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
           children: [
             NewDropDownMenu(),
             Container(
-              height: 500,
+              height: MediaQuery.of(context).size.height * 0.75,
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return Card(

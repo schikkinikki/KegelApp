@@ -42,6 +42,13 @@ class DBProvider {
     return res.isNotEmpty ? Kegelbruder.fromMap(res.first) : null;
   }
 
+  //getting selected player entry from database
+  Future<dynamic> getSelectedKegelbruder() async {
+    final db = await database;
+    var res = await db.query("kegelbruder", where: "isSelected = 1");
+    return res.isNotEmpty ? Kegelbruder.fromMap(res.first) : null;
+  }
+
   //getting all entrys from the database
   Future<List<Kegelbruder>> getAllKegelbruder() async {
     final db = await database;

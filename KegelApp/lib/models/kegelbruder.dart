@@ -21,14 +21,14 @@ class Kegelbruder extends ChangeNotifier {
       {@required this.name,
       this.isKing,
       this.isPumpenKing,
-      this.pumpe,
-      this.klingeln,
-      this.stina,
-      this.durchwurf,
-      this.handy,
-      this.kugelBringen,
-      this.lustwurf,
-      this.zweiPersonenAufDerBahn,
+      this.pumpe = 0,
+      this.klingeln = 0,
+      this.stina = 0,
+      this.durchwurf = 0,
+      this.handy = 0,
+      this.kugelBringen = 0,
+      this.lustwurf = 0,
+      this.zweiPersonenAufDerBahn = 0,
       this.isSelected = 0});
 
   Kegelbruder get spieler {
@@ -76,17 +76,6 @@ class Kegelbruder extends ChangeNotifier {
     };
   }
 
-  //needed for strafen-Ui
-  List<int> strafenListe = [0, 0, 0, 0, 0, 0, 0, 0];
-
-  List<int> get strafenListen {
-    return strafenListe;
-  }
-
-  int getSingleStrafe(int index) {
-    return strafenListe[index];
-  }
-
   //change selection, needed for DropDownButton Widget
   void setSelected() {
     if (isSelected == 0) {
@@ -129,42 +118,42 @@ class Kegelbruder extends ChangeNotifier {
   }
 
   void setPumpe(int strafe) {
-    this.pumpe = strafe;
+    this.pumpe += strafe;
     notifyListeners();
   }
 
   void setKlingeln(int klingeln) {
-    this.klingeln = klingeln;
+    this.klingeln += klingeln;
     notifyListeners();
   }
 
   void setMittenDurch(int mittenDurch) {
-    this.stina = mittenDurch;
+    this.stina += mittenDurch;
     notifyListeners();
   }
 
   void setDurchWurf(int durchWurf) {
-    this.durchwurf = durchwurf;
+    this.durchwurf += durchwurf;
     notifyListeners();
   }
 
   void setHandy(int handy) {
-    this.handy = handy;
+    this.handy += handy;
     notifyListeners();
   }
 
   void setKugelBringen(int kugelBringen) {
-    this.kugelBringen = kugelBringen;
+    this.kugelBringen += kugelBringen;
     notifyListeners();
   }
 
   void setLustwurf(int lustWurf) {
-    this.lustwurf = lustWurf;
+    this.lustwurf += lustWurf;
     notifyListeners();
   }
 
   void setZuZweitaufDerBahn(int zuZweitaufDerBahn) {
-    this.zweiPersonenAufDerBahn = zuZweitaufDerBahn;
+    this.zweiPersonenAufDerBahn += zuZweitaufDerBahn;
     notifyListeners();
   }
 }

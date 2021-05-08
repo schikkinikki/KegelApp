@@ -85,7 +85,7 @@ class _MyClubScreenState extends State<MyClubScreen> {
                       Kegelbruder player = snapshot.data[index];
                       return Container(
                         padding: EdgeInsets.all(3),
-                        width: 350,
+                        width: 300,
                         margin: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             border: Border.all(

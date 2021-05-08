@@ -94,9 +94,17 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.black),
                             ),
-                            child: Text("    " +
-                                memberData.getOneStrafe(index).toString() +
-                                "    "),
+                            child: FutureBuilder(
+                              future: memberData
+                                  .getStrafenCount(strafenUiListe[index]),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Text("  " + snapshot.data + "  ");
+                                } else {
+                                  return Text("       ");
+                                }
+                              },
+                            ),
                           ),
                           SizedBox(
                             width: 20,

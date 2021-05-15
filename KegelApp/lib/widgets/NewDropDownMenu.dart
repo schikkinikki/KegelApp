@@ -25,6 +25,23 @@ class _NewDropDownMenuState extends State<NewDropDownMenu> {
       print(selectedPlayer.isSelected.toString());
     }
 
+    // change selection value based on the given name from the DropDownButton
+    // TODO test the function
+    void changeSelection(String name) async {
+      List<Kegelbruder> allPlayer = await DBProvider.db.getAllKegelbruder();
+
+      allPlayer.forEach((player) {
+        if (player.name == name) {
+          player.setSelected();
+          DBProvider.db.updateKegelbruder(player);
+          print(player.isSelected.toString());
+        } else if (player.name != name) {
+          player.isSelected = 0;
+          DBProvider.db.updateKegelbruder(player);
+        }
+      });
+    }
+
     return FutureBuilder<List<Kegelbruder>>(
       future: DBProvider.db.getAllKegelbruder(),
       builder: (context, snapshot) {

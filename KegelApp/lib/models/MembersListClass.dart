@@ -174,6 +174,7 @@ class MemberListClass extends ChangeNotifier {
       default:
         break;
     }
+    notifyListeners();
     return "    ";
   }
 }

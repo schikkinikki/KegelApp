@@ -1,8 +1,6 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
-import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class NewDropDownMenu extends StatefulWidget {
   @override
@@ -14,19 +12,7 @@ String dropDownValue;
 class _NewDropDownMenuState extends State<NewDropDownMenu> {
   @override
   Widget build(BuildContext context) {
-    final memberData = Provider.of<MemberListClass>(context);
-    final memberlist = memberData.member;
-
-    void changeSelection(String name) async {
-      Kegelbruder selectedPlayer = await DBProvider.db.getKegelbruder(name);
-      print(selectedPlayer.name);
-      selectedPlayer.setSelected();
-      await DBProvider.db.updateKegelbruder(selectedPlayer);
-      print(selectedPlayer.isSelected.toString());
-    }
-
     // change selection value based on the given name from the DropDownButton
-    // TODO test the function
     void changeSelection(String name) async {
       List<Kegelbruder> allPlayer = await DBProvider.db.getAllKegelbruder();
 
@@ -34,10 +20,11 @@ class _NewDropDownMenuState extends State<NewDropDownMenu> {
         if (player.name == name) {
           player.setSelected();
           DBProvider.db.updateKegelbruder(player);
-          print(player.isSelected.toString());
+          print(player.name + player.isSelected.toString());
         } else if (player.name != name) {
           player.isSelected = 0;
           DBProvider.db.updateKegelbruder(player);
+          print(player.name + player.isSelected.toString());
         }
       });
     }

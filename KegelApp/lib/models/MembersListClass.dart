@@ -33,7 +33,20 @@ class MemberListClass extends ChangeNotifier {
     return memberlist.firstWhere((element) => element.name == name);
   }
 
-// set Strafen for selected Player higher
+  //reset all entrys for Kegelbruder
+  void resetStrafen(Kegelbruder member) {
+    member.pumpe = 0;
+    member.klingeln = 0;
+    member.stina = 0;
+    member.handy = 0;
+    member.kugelBringen = 0;
+    member.lustwurf = 0;
+    member.durchwurf = 0;
+    member.zweiPersonenAufDerBahn = 0;
+    member.isSelected = 0;
+  }
+
+  // set Strafen for selected Player higher
   void setStrafen(int index, String strafen) async {
     // get all Kegelbruder from DB
     List<Kegelbruder> kegelbruderListe =
@@ -183,5 +196,18 @@ class MemberListClass extends ChangeNotifier {
     }
     notifyListeners();
     return "    ";
+  }
+
+  //reset strafen for all Player
+  void startNewSession() async {
+    //get all Kegelbruder from Database
+    List<Kegelbruder> allKegelbruder = await DBProvider.db.getAllKegelbruder();
+
+    //set all strafen entrys == 0
+    allKegelbruder.forEach((player) async {
+      resetStrafen(player);
+      await DBProvider.db.updateKegelbruder(player);
+    });
+    notifyListeners();
   }
 }

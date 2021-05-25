@@ -38,9 +38,15 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
         ),
         actions: [
           PopupMenuButton(
+            onSelected: (value) {
+              if (value == 1) {
+                memberData.startNewSession();
+              }
+            },
             itemBuilder: (_) => [
               PopupMenuItem(
                 child: Text("Session beenden"),
+                value: 1,
               ),
             ],
             icon: Icon(Icons.more_vert),

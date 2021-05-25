@@ -40,48 +40,48 @@ class MemberListClass extends ChangeNotifier {
         await DBProvider.db.getAllKegelbruder();
 
     // get strafenliste from kegelbruder an loop through until he is // no longer selected
-    kegelbruderListe.forEach((kegelbruder) {
+    kegelbruderListe.forEach((kegelbruder) async {
       while (kegelbruder.isSelected == 1) {
         switch (strafen) {
           case "Pumpe":
             kegelbruder.setPumpe(1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
             print("pumpe" + kegelbruder.pumpe.toString());
             break;
           case "Klingeln":
             kegelbruder.setKlingeln(1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
-            print("klingeln" + kegelbruder.pumpe.toString());
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("klingeln" + kegelbruder.klingeln.toString());
             break;
           case "Stina":
             kegelbruder.setMittenDurch(1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
-            print("stina" + kegelbruder.pumpe.toString());
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("stina" + kegelbruder.stina.toString());
             break;
           case "Durchwurf":
             kegelbruder.setDurchWurf(1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
-            print("durchwurf" + kegelbruder.pumpe.toString());
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("durchwurf" + kegelbruder.durchwurf.toString());
             break;
           case "Handy":
             kegelbruder.setHandy(1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
-            print("handy" + kegelbruder.pumpe.toString());
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("handy" + kegelbruder.handy.toString());
             break;
           case "Kugel bringen":
             kegelbruder.setKugelBringen(1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
-            print("kugel bringen" + kegelbruder.pumpe.toString());
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("kugel bringen" + kegelbruder.kugelBringen.toString());
             break;
           case "Zu 2. auf der Bahn":
             kegelbruder.setZuZweitaufDerBahn(1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
-            print("zu 2." + kegelbruder.pumpe.toString());
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("zu 2." + kegelbruder.zweiPersonenAufDerBahn.toString());
             break;
           case "Lustwurf":
             kegelbruder.setLustwurf(1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
-            print("lustwurf" + kegelbruder.pumpe.toString());
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("lustwurf" + kegelbruder.lustwurf.toString());
             break;
           default:
             break;
@@ -99,41 +99,48 @@ class MemberListClass extends ChangeNotifier {
         await DBProvider.db.getAllKegelbruder();
 
     // get strafenliste from kegelbruder an loop through until he is // no longer selected
-    kegelbruderListe.forEach((kegelbruder) {
+    kegelbruderListe.forEach((kegelbruder) async {
       while (kegelbruder.isSelected == 1) {
         switch (strafen) {
           case "Pumpe":
             kegelbruder.setPumpe(-1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
             print("pumpe" + kegelbruder.pumpe.toString());
             break;
           case "Klingeln":
             kegelbruder.setKlingeln(-1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("klingeln" + kegelbruder.klingeln.toString());
             break;
           case "Stina":
             kegelbruder.setMittenDurch(-1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("stina" + kegelbruder.stina.toString());
             break;
           case "Durchwurf":
             kegelbruder.setDurchWurf(-1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("durchwurf" + kegelbruder.durchwurf.toString());
             break;
           case "Handy":
             kegelbruder.setHandy(-1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("handy" + kegelbruder.handy.toString());
             break;
           case "Kugel bringen":
             kegelbruder.setKugelBringen(-1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("kugelbringen" + kegelbruder.kugelBringen.toString());
             break;
           case "Zu 2. auf der Bahn":
             kegelbruder.setZuZweitaufDerBahn(-1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("zu2." + kegelbruder.zweiPersonenAufDerBahn.toString());
             break;
           case "Lustwurf":
             kegelbruder.setLustwurf(-1);
-            DBProvider.db.updateKegelbruder(kegelbruder);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            print("lustwurf" + kegelbruder.lustwurf.toString());
             break;
           default:
             break;

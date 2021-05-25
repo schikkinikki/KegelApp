@@ -16,14 +16,14 @@ class _NewDropDownMenuState extends State<NewDropDownMenu> {
     void changeSelection(String name) async {
       List<Kegelbruder> allPlayer = await DBProvider.db.getAllKegelbruder();
 
-      allPlayer.forEach((player) {
+      allPlayer.forEach((player) async {
         if (player.name == name) {
           player.setSelected();
-          DBProvider.db.updateKegelbruder(player);
+          await DBProvider.db.updateKegelbruder(player);
           print(player.name + player.isSelected.toString());
         } else if (player.name != name) {
           player.isSelected = 0;
-          DBProvider.db.updateKegelbruder(player);
+          await DBProvider.db.updateKegelbruder(player);
           print(player.name + player.isSelected.toString());
         }
       });

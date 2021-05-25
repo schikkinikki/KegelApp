@@ -78,7 +78,7 @@ class _MyClubScreenState extends State<MyClubScreen> {
             final memberlist = memberData.member;
             if (snapshot.hasData) {
               return Container(
-                height: MediaQuery.of(context).size.height * 0.65,
+                height: MediaQuery.of(context).size.height * 0.65 - 5,
                 padding: EdgeInsets.all(10),
                 child: ListView.builder(
                     itemBuilder: (context, index) {

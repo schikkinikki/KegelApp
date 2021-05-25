@@ -133,7 +133,7 @@ class Kegelbruder extends ChangeNotifier {
   }
 
   void setDurchWurf(int durchWurf) {
-    this.durchwurf += durchwurf;
+    this.durchwurf += durchWurf;
     notifyListeners();
   }
 

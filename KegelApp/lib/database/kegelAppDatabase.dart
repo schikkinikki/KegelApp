@@ -24,6 +24,8 @@ class DBProvider {
         onCreate: (db, version) async {
       await db.execute(
           '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, isSelected INTEGER)''');
+      await db.execute(
+          '''CREATE TABLE session(date DATE PRIMARY KEY, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER)''');
     }, version: 1);
   }
 

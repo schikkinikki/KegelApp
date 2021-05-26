@@ -1,7 +1,32 @@
+import 'package:KegelApp/widgets/DataTableWidget.dart';
 import 'package:flutter/material.dart';
 
-class OldSessionScreen extends StatelessWidget {
+class OldSessionScreen extends StatefulWidget {
   static const routeName = "/old-session-screen";
+
+  @override
+  _OldSessionScreenState createState() => _OldSessionScreenState();
+}
+
+// stores ExpansionPanel state information
+class Item {
+  Item({
+    @required this.expandedValue,
+    @required this.headerValue,
+    this.isExpanded = false,
+  });
+
+  String expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+class _OldSessionScreenState extends State<OldSessionScreen> {
+  List<Item> itemsDummyList = [
+    Item(expandedValue: "Hi", headerValue: "Tabelle 1"),
+    Item(expandedValue: "Hi2", headerValue: "Tabelle 2"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +50,27 @@ class OldSessionScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        child: Text("Alte Session kommen hier hin!"),
+      body: SingleChildScrollView(
+        child: Container(
+          child: ExpansionPanelList(
+            expansionCallback: (panelIndex, isExpanded) {
+              setState(() {
+                itemsDummyList[panelIndex].isExpanded = !isExpanded;
+              });
+            },
+            children: itemsDummyList.map((Item item) {
+              return ExpansionPanel(
+                headerBuilder: (context, isExpanded) {
+                  return ListTile(
+                    title: Text(item.headerValue),
+                  );
+                },
+                body: DataTableWidget(),
+                isExpanded: item.isExpanded,
+              );
+            }).toList(),
+          ),
+        ),
       ),
     );
   }

@@ -5,7 +5,7 @@ import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:flutter/material.dart';
 
 class Session {
-  DateTime date;
+  String date;
   Kegelbruder kegelbruder;
 
   Session({this.date, this.kegelbruder});
@@ -59,7 +59,7 @@ class SessionProvider extends ChangeNotifier {
   List<Session> sessionList = [];
 
   //save session and add it to the database
-  void saveSession(DateTime date, Kegelbruder kegelbruder) async {
+  void saveSession(String date, Kegelbruder kegelbruder) async {
     Session newSession = new Session(date: date, kegelbruder: kegelbruder);
     await DBProvider.db.addSession(newSession);
   }

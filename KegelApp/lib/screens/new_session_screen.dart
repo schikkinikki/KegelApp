@@ -1,7 +1,11 @@
+import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
+import 'package:KegelApp/models/kegelbruder.dart';
+import 'package:KegelApp/models/session.dart';
 import 'package:KegelApp/widgets/NewDropDownMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class NewSessionScreen extends StatefulWidget {
   static const routeName = "/new-session-screen";
@@ -25,6 +29,46 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
       "Lustwurf"
     ];
 
+    void saveAndResetSession() async {
+      var date = DateFormat.yMd();
+      var dateString = date.format(DateTime.now());
+
+      List<Kegelbruder> list = await DBProvider.db.getAllKegelbruder();
+      list.forEach((member) async {
+        var session = new Session(date: dateString, kegelbruder: member);
+        await DBProvider.db.addSession(session);
+        print("session with " + member.name + "was added");
+      });
+    }
+
+    void showCustomAlertDialog() {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Speichern und beenden"),
+            content: const Text(
+                "Möchtest du wirklich die laufende Session speichern und beenden? Alle Einträge werden dabei auf null zurückgesetzt!"),
+            actions: [
+              FlatButton(
+                onPressed: () {
+                  saveAndResetSession();
+                  memberData.startNewSession();
+                },
+                child: const Text("Okay"),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Nein"),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -40,7 +84,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
           PopupMenuButton(
             onSelected: (value) {
               if (value == 1) {
-                memberData.startNewSession();
+                showCustomAlertDialog();
               }
             },
             itemBuilder: (_) => [

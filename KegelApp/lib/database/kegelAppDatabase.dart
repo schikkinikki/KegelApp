@@ -1,4 +1,5 @@
 import 'package:KegelApp/models/kegelbruder.dart';
+import 'package:KegelApp/models/session.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -29,14 +30,21 @@ class DBProvider {
     }, version: 1);
   }
 
-  //adding a new entrys to the database
+  //adding a new entry to kegelbruder table
   addKegelbruder(Kegelbruder newKegelbruder) async {
     final db = await database;
     var res = await db.insert("kegelbruder", newKegelbruder.toMap());
     return res;
   }
 
-  //getting a entrys from the database
+  //adding a new entry to session table
+  addSession(Session newSession) async {
+    final db = await database;
+    var res = await db.insert("session", newSession.toMap());
+    return res;
+  }
+
+  //getting a entry from kegelbruder table
   Future<dynamic> getKegelbruder(String name) async {
     final db = await database;
     var res =
@@ -44,14 +52,14 @@ class DBProvider {
     return res.isNotEmpty ? Kegelbruder.fromMap(res.first) : null;
   }
 
-  //getting selected player entry from database
+  //getting selected player entry kegelbruder table
   Future<dynamic> getSelectedKegelbruder() async {
     final db = await database;
     var res = await db.query("kegelbruder", where: "isSelected = 1");
     return res.isNotEmpty ? Kegelbruder.fromMap(res.first) : null;
   }
 
-  //getting all entrys from the database
+  //getting all entrys from kegelbruder table
   Future<List<Kegelbruder>> getAllKegelbruder() async {
     final db = await database;
     var res = await db.query("kegelbruder");
@@ -60,13 +68,22 @@ class DBProvider {
     return list;
   }
 
-  //delete a entry from the database
+  //getting all entrys from session table
+  Future<List<Session>> getAllSessions() async {
+    final db = await database;
+    var res = await db.query("session");
+    List<Session> list =
+        res.isNotEmpty ? res.map((e) => Session.fromMap(e)).toList() : [];
+    return list;
+  }
+
+  //delete a entry from kegelbruder table
   deleteKegelbruder(String name) async {
     final db = await database;
     await db.delete("kegelbruder", where: "name = ?", whereArgs: [name]);
   }
 
-  //update a entry from the database
+  //update a entry from kegelbruder table
   updateKegelbruder(Kegelbruder kegelbruder) async {
     final db = await database;
     Kegelbruder updateBruder = Kegelbruder(

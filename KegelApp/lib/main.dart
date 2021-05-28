@@ -1,4 +1,5 @@
 import 'package:KegelApp/models/MembersListClass.dart';
+import 'package:KegelApp/models/session.dart';
 import 'package:KegelApp/screens/games_screen.dart';
 import 'package:KegelApp/screens/my_club_screen.dart';
 import 'package:KegelApp/screens/new_session_screen.dart';
@@ -21,6 +22,7 @@ class KegelApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => MemberListClass()),
         ChangeNotifierProvider(create: (context) => Kegelbruder.c2()),
+        ChangeNotifierProvider(create: (context) => SessionProvider()),
       ],
       child: MaterialApp(
         home: TabsScreen(),

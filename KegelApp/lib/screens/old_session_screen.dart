@@ -24,7 +24,6 @@ class Item {
 class _OldSessionScreenState extends State<OldSessionScreen> {
   List<Item> itemsDummyList = [
     Item(expandedValue: "Hi", headerValue: "Tabelle 1"),
-    Item(expandedValue: "Hi2", headerValue: "Tabelle 2"),
   ];
 
   @override

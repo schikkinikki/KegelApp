@@ -58,9 +58,55 @@ class Session {
 class SessionProvider extends ChangeNotifier {
   List<Session> sessionList = [];
 
-  //save session and add it to the database
-  void saveSession(String date, Kegelbruder kegelbruder) async {
-    Session newSession = new Session(date: date, kegelbruder: kegelbruder);
-    await DBProvider.db.addSession(newSession);
+  Future<List<Session>> getSessions() async {
+    sessionList = await DBProvider.db.getAllSessions();
+    return sessionList;
+  }
+
+  List<DataRow> dataRows = [];
+
+  void addRow() async {
+    sessionList = await DBProvider.db.getAllSessions();
+    sessionList.forEach((session) {
+      dataRows.add(
+        DataRow(cells: <DataCell>[
+          DataCell(Text(session.kegelbruder.name)),
+          DataCell(Text(
+            session.kegelbruder.pumpe.toString(),
+            textAlign: TextAlign.center,
+          )),
+          DataCell(Text(
+            session.kegelbruder.klingeln.toString(),
+            textAlign: TextAlign.center,
+          )),
+          DataCell(Text(
+            session.kegelbruder.stina.toString(),
+            textAlign: TextAlign.center,
+          )),
+          DataCell(Text(
+            session.kegelbruder.durchwurf.toString(),
+            textAlign: TextAlign.center,
+          )),
+          DataCell(Text(
+            session.kegelbruder.handy.toString(),
+            textAlign: TextAlign.center,
+          )),
+          DataCell(Text(
+            session.kegelbruder.kugelBringen.toString(),
+            textAlign: TextAlign.center,
+          )),
+          DataCell(Text(
+            session.kegelbruder.zweiPersonenAufDerBahn.toString(),
+            textAlign: TextAlign.center,
+          )),
+          DataCell(Text(
+            session.kegelbruder.lustwurf.toString(),
+            textAlign: TextAlign.center,
+          )),
+        ]),
+      );
+    });
+    print("Rows wurden hinzugefügt");
+    notifyListeners();
   }
 }

@@ -39,6 +39,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
         await DBProvider.db.addSession(session);
         print("session with " + member.name + "was added");
       });
+      Provider.of<SessionProvider>(context, listen: false).addRow();
     }
 
     void showCustomAlertDialog() {
@@ -54,6 +55,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                 onPressed: () {
                   saveAndResetSession();
                   memberData.startNewSession();
+                  Navigator.of(context).pop();
                 },
                 child: const Text("Okay"),
               ),

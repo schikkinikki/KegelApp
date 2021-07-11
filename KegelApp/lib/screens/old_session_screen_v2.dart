@@ -1,4 +1,5 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
+import 'package:KegelApp/models/kegelabend_excel_sheet.dart';
 import 'package:KegelApp/models/session.dart';
 import 'package:KegelApp/screens/old_session_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -78,18 +79,18 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
       body: FutureBuilder(
         future: DBProvider.db.getAllSessions(),
         builder: (context, snapshot) {
-          List<Session> datalist = snapshot.data;
-          var dataMap = datalist.fold<Map<String, List<Session>>>(
-              {},
-              (map, element) => map
-                ..update(element.date, (list) => list..add(element),
-                    ifAbsent: () => [element]));
           if (!snapshot.hasData) {
             return Center(
               child: Text("Noch keine Kegelabende gespielt!"),
             );
           }
           if (snapshot.hasData) {
+            List<Session> datalist = snapshot.data;
+            var dataMap = datalist.fold<Map<String, List<Session>>>(
+                {},
+                (map, element) => map
+                  ..update(element.date, (list) => list..add(element),
+                      ifAbsent: () => [element]));
             return ListView.builder(
               itemBuilder: (context, index) {
                 return !isExpanded
@@ -138,7 +139,17 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 RaisedButton(
-                                    child: Text("Teilen"), onPressed: null),
+                                  child: Text("Teilen"),
+                                  onPressed: () {
+                                    String sessionkey =
+                                        dataMap.keys.elementAt(index);
+                                    List<Session> selectedSessionList =
+                                        dataMap[sessionkey];
+                                    ExcelCreator excelCreator =
+                                        new ExcelCreator(selectedSessionList);
+                                    excelCreator.createExcel();
+                                  },
+                                ),
                                 RaisedButton(
                                   child: Text("Details"),
                                   onPressed: () {

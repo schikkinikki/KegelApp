@@ -32,7 +32,11 @@ dependencies:
 
   intl: ^0.16.0
 
-  excel: ^1.1.5
+  syncfusion_flutter_xlsio: ^18.4.49-beta
+
+  path_provider: ^1.6.28
+
+  open_file: ^3.0.3
 
 
   # The following adds the Cupertino Icons font to your application.

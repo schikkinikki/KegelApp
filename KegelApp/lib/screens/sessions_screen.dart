@@ -1,5 +1,5 @@
 import 'package:KegelApp/screens/new_session_screen.dart';
-import 'package:KegelApp/screens/old_session_screen.dart';
+import 'package:KegelApp/screens/old_session_screen_v2.dart';
 import 'package:flutter/material.dart';
 
 class SessionScreen extends StatefulWidget {
@@ -18,8 +18,8 @@ class _SessionScreenState extends State<SessionScreen> {
       case NewSessionScreen.routeName:
         Navigator.of(context).pushNamed(NewSessionScreen.routeName);
         break;
-      case OldSessionScreen.routeName:
-        Navigator.of(context).pushNamed(OldSessionScreen.routeName);
+      case OldSessionScreenV2.routeName:
+        Navigator.of(context).pushNamed(OldSessionScreenV2.routeName);
         break;
       default:
         break;
@@ -55,7 +55,7 @@ class _SessionScreenState extends State<SessionScreen> {
             ),
           ),
           GestureDetector(
-            onTap: () => switchScreen(OldSessionScreen.routeName),
+            onTap: () => switchScreen(OldSessionScreenV2.routeName),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),

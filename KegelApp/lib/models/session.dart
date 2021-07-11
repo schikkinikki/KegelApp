@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
-import 'package:KegelApp/screens/old_session_screen.dart';
 import 'package:flutter/material.dart';
 
 class Session {
@@ -54,17 +53,6 @@ class Session {
     final jsonData = jsonDecode(str);
     return Session.fromMap(jsonData);
   }
-}
-
-class ExpansionPanelItems {
-  bool isExpanded;
-  String headerValue;
-  Widget expandedValue;
-
-  ExpansionPanelItems(
-      {this.isExpanded = false,
-      @required this.headerValue,
-      @required this.expandedValue});
 }
 
 class SessionProvider extends ChangeNotifier {
@@ -119,19 +107,6 @@ class SessionProvider extends ChangeNotifier {
       );
     });
     print("Rows wurden hinzugefügt");
-    notifyListeners();
-  }
-
-  var expansionPanelMap = {};
-
-  //create sorted Map for expansion panels
-  void sortAndMapLists() async {
-    List<Session> unsortedSessionList = await DBProvider.db.getAllSessions();
-    var sortedMap = unsortedSessionList.fold<Map<String, List<Session>>>(
-        {},
-        (map, session) =>
-            map..update(session.date, (list) => list..add(session)));
-    expansionPanelMap = sortedMap;
     notifyListeners();
   }
 }

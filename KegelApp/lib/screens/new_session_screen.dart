@@ -39,7 +39,6 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
         await DBProvider.db.addSession(session);
         print("session with " + member.name + "was added");
       });
-      Provider.of<SessionProvider>(context, listen: false).addRow();
     }
 
     void showCustomAlertDialog() {

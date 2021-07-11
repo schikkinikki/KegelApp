@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DataTableWidget extends StatefulWidget {
+  List<DataRow> dataRows;
+
+  DataTableWidget(this.dataRows);
   @override
   _DataTableWidgetState createState() => _DataTableWidgetState();
 }
@@ -11,9 +14,6 @@ class DataTableWidget extends StatefulWidget {
 class _DataTableWidgetState extends State<DataTableWidget> {
   @override
   Widget build(BuildContext context) {
-    final sessionData = Provider.of<SessionProvider>(context);
-    final List<DataRow> rowList = sessionData.dataRows;
-
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: SingleChildScrollView(
@@ -77,7 +77,7 @@ class _DataTableWidgetState extends State<DataTableWidget> {
               ),
             ),
           ],
-          rows: rowList,
+          rows: widget.dataRows,
         ),
       ),
     );

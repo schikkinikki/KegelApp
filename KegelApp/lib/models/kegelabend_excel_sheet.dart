@@ -3,7 +3,7 @@ import 'package:KegelApp/models/session.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:open_file/open_file.dart';
+import 'package:flutter_mailer/flutter_mailer.dart';
 
 class ExcelCreator {
   List<Session> sessionList = [];
@@ -21,7 +21,7 @@ class ExcelCreator {
     final String excelFileName = "$excelPath/Kegelabend.xlsx";
     final File excelFile = File(excelFileName);
     await excelFile.writeAsBytes(excelBytes, flush: true);
-    OpenFile.open(excelFileName);
+    sendEmail(excelFileName);
   }
 
   //create basic headers for the sheet
@@ -70,6 +70,16 @@ class ExcelCreator {
           .setNumber(player.lustwurf.toDouble());
 
       count += 1;
+    }
+  }
+
+  void sendEmail(String filePath) async {
+    MailOptions mailOptions =
+        MailOptions(attachments: [filePath], isHTML: true);
+    try {
+      await FlutterMailer.send(mailOptions);
+    } catch (error) {
+      //
     }
   }
 }

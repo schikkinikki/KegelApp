@@ -1,7 +1,4 @@
-import 'package:KegelApp/database/kegelAppDatabase.dart';
-import 'package:KegelApp/models/session.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class DataTableWidget extends StatefulWidget {
   List<DataRow> dataRows;

@@ -12,6 +12,7 @@ class OldSessionScreenV2 extends StatefulWidget {
 class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
   bool isExpanded = false;
 
+  //add rows to a list of DataRows to pass them to the DatatableWidget
   List<DataRow> addRow(List<Session> sessionList) {
     List<DataRow> dataRows = [];
 

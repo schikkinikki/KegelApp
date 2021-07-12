@@ -33,22 +33,42 @@ class _NewDropDownMenuState extends State<NewDropDownMenu> {
       future: DBProvider.db.getAllKegelbruder(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return DropdownButton(
-              value: dropDownValue,
-              items: snapshot.data
-                  .map(
-                    (kb) => DropdownMenuItem<String>(
-                      child: Text(kb.name),
-                      value: kb.name,
-                    ),
-                  )
-                  .toList(),
-              onChanged: (String newValue) {
-                setState(() {
-                  dropDownValue = newValue;
-                  changeSelection(newValue);
-                });
-              });
+          return Container(
+            padding: EdgeInsets.all(2),
+            width: 200,
+            margin: EdgeInsets.all(5),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Color.fromRGBO(16, 42, 67, 0.7)),
+            child: DropdownButton(
+                isExpanded: true,
+                icon: Icon(
+                  Icons.expand_more,
+                  color: Color.fromRGBO(217, 226, 236, 1),
+                ),
+                value: dropDownValue,
+                dropdownColor: Color.fromRGBO(16, 42, 67, 0.7),
+                items: snapshot.data
+                    .map(
+                      (kb) => DropdownMenuItem<String>(
+                        child: Text(
+                          kb.name,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color.fromRGBO(217, 226, 236, 1)),
+                        ),
+                        value: kb.name,
+                      ),
+                    )
+                    .toList(),
+                onChanged: (String newValue) {
+                  setState(() {
+                    dropDownValue = newValue;
+                    changeSelection(newValue);
+                  });
+                }),
+          );
         } else {
           return Text("Keine Spieler verfügbar");
         }

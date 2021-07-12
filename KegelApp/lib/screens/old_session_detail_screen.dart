@@ -13,16 +13,12 @@ class _OldSessionDetailScreenState extends State<OldSessionDetailScreen> {
     final args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.orange, Colors.red],
-            ),
-          ),
+        backgroundColor: Color.fromRGBO(48, 48, 48, 1),
+        title: Text(
+          "Details",
+          style:
+              TextStyle(fontSize: 30, color: Color.fromRGBO(217, 226, 236, 1)),
         ),
-        title: Text("Details"),
         centerTitle: true,
       ),
       body: DataTableWidget(args),

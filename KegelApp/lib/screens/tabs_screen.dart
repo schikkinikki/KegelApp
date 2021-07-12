@@ -25,50 +25,28 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.orange, Colors.red],
-            ),
-          ),
-        ),
+        backgroundColor: Color.fromRGBO(48, 48, 48, 1),
         title: Text(
           "Kegel App",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 30,
-            color: Colors.black54,
+            color: Color.fromRGBO(217, 226, 236, 1),
           ),
         ),
         centerTitle: true,
       ),
+      backgroundColor: Color.fromRGBO(48, 48, 48, 1),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.white, Colors.grey]),
-        ),
         child: _pages[_selectedPageIndex],
       ),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
-            colors: [
-              Colors.orange,
-              Colors.red,
-            ],
-          ),
-        ),
+        color: Color.fromRGBO(48, 48, 48, 1),
         child: BottomNavigationBar(
           onTap: _selectPage,
-          backgroundColor: Colors.transparent,
-          selectedItemColor: Colors.yellow,
-          unselectedItemColor: Colors.black,
+          backgroundColor: Color.fromRGBO(48, 48, 48, 1),
+          selectedItemColor: Color.fromRGBO(51, 78, 104, 1),
+          unselectedItemColor: Color.fromRGBO(217, 226, 236, 0.6),
           currentIndex: _selectedPageIndex,
           items: [
             BottomNavigationBarItem(
@@ -77,12 +55,13 @@ class _TabsScreenState extends State<TabsScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.sports_bar),
-              label: "Session",
+              label: "Kegelabend",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.sports_esports),
-              label: "Spiele",
-            ),
+            //Maybe in future add feature to play simple games in app
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.sports_esports),
+            //   label: "Spiele",
+            // ),
           ],
         ),
       ),

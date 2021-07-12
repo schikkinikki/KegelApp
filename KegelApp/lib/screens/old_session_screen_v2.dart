@@ -64,18 +64,15 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.orange, Colors.red],
-            ),
-          ),
+        backgroundColor: Color.fromRGBO(48, 48, 48, 1),
+        title: Text(
+          "Alte Kegelabende",
+          style:
+              TextStyle(fontSize: 30, color: Color.fromRGBO(217, 226, 236, 1)),
         ),
-        title: Text("Abgeschlossene Kegelabende"),
         centerTitle: true,
       ),
+      backgroundColor: Color.fromRGBO(48, 48, 48, 1),
       body: FutureBuilder(
         future: DBProvider.db.getAllSessions(),
         builder: (context, snapshot) {
@@ -99,13 +96,23 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                         height: isExpanded ? 100 : 50,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(15),
+                            color: Color.fromRGBO(16, 42, 67, 0.7)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text(dataMap.keys.elementAt(index)),
+                            Text(
+                              dataMap.keys.elementAt(index),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color.fromRGBO(217, 226, 236, 1)),
+                            ),
                             IconButton(
-                                icon: Icon(Icons.arrow_downward_rounded),
+                                icon: Icon(
+                                  Icons.arrow_downward_rounded,
+                                  color: Color.fromRGBO(217, 226, 236, 1),
+                                  size: 28,
+                                ),
                                 onPressed: () {
                                   setState(() {
                                     isExpanded = !isExpanded;
@@ -119,15 +126,25 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                         height: isExpanded ? 100 : 50,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(15),
+                            color: Color.fromRGBO(16, 42, 67, 0.7)),
                         child: Column(
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(dataMap.keys.elementAt(index)),
+                                Text(
+                                  dataMap.keys.elementAt(index),
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Color.fromRGBO(217, 226, 236, 1)),
+                                ),
                                 IconButton(
-                                    icon: Icon(Icons.arrow_upward_rounded),
+                                    icon: Icon(
+                                      Icons.arrow_upward_rounded,
+                                      color: Color.fromRGBO(217, 226, 236, 1),
+                                      size: 28,
+                                    ),
                                     onPressed: () {
                                       setState(() {
                                         isExpanded = !isExpanded;
@@ -139,7 +156,10 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 RaisedButton(
-                                  child: Text("Teilen"),
+                                  child: Text(
+                                    "Teilen",
+                                    style: TextStyle(fontSize: 18),
+                                  ),
                                   onPressed: () {
                                     String sessionkey =
                                         dataMap.keys.elementAt(index);
@@ -151,7 +171,10 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                                   },
                                 ),
                                 RaisedButton(
-                                  child: Text("Details"),
+                                  child: Text(
+                                    "Details",
+                                    style: TextStyle(fontSize: 18),
+                                  ),
                                   onPressed: () {
                                     String sessionkey =
                                         dataMap.keys.elementAt(index);

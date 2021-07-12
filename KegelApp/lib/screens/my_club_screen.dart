@@ -88,29 +88,26 @@ class _MyClubScreenState extends State<MyClubScreen> {
                         width: 350,
                         margin: EdgeInsets.all(5),
                         decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Colors.grey, style: BorderStyle.solid),
-                            borderRadius: BorderRadius.circular(15),
-                            gradient: LinearGradient(
-                              begin: Alignment.bottomLeft,
-                              end: Alignment.topRight,
-                              colors: [Colors.orange, Colors.deepOrange],
-                            )),
+                          borderRadius: BorderRadius.circular(15),
+                          color: Color.fromRGBO(16, 42, 67, 0.7),
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
-                              Icons.perm_identity,
-                              size: 32,
-                            ),
+                            Icon(Icons.perm_identity,
+                                size: 32,
+                                color: Color.fromRGBO(217, 226, 236, 1)),
                             Text(
                               player.name,
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color.fromRGBO(217, 226, 236, 1)),
                             ),
                             IconButton(
                                 icon: Icon(
                                   Icons.delete,
                                   size: 32,
+                                  color: Color.fromRGBO(217, 226, 236, 1),
                                 ),
                                 onPressed: () {
                                   DBProvider.db.deleteKegelbruder(player.name);
@@ -134,14 +131,25 @@ class _MyClubScreenState extends State<MyClubScreen> {
           future: DBProvider.db.getAllKegelbruder(),
           builder: (context, snapshot) {
             final memberData = Provider.of<MemberListClass>(context);
-            return RaisedButton.icon(
-              onPressed: () {
-                addMember(memberData);
-                print(memberData);
-              },
-              icon: Icon(Icons.person_add),
-              label: Text("Clubmitglied hinzufügen"),
-              color: Colors.deepOrange,
+            return SizedBox(
+              height: 50,
+              child: RaisedButton.icon(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                onPressed: () {
+                  addMember(memberData);
+                  print(memberData);
+                },
+                icon: Icon(
+                  Icons.person_add,
+                  color: Color.fromRGBO(217, 226, 236, 1),
+                ),
+                label: Text(
+                  "Clubmitglied hinzufügen",
+                  style: TextStyle(color: Color.fromRGBO(217, 226, 236, 0.7)),
+                ),
+                color: Color.fromRGBO(16, 42, 67, 0.7),
+              ),
             );
           },
         ),

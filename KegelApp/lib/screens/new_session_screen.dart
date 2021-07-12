@@ -72,15 +72,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.orange, Colors.red],
-            ),
-          ),
-        ),
+        backgroundColor: Color.fromRGBO(48, 48, 48, 1),
         actions: [
           PopupMenuButton(
             onSelected: (value) {
@@ -102,20 +94,25 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 30,
-            color: Colors.black54,
+            color: Color.fromRGBO(217, 226, 236, 1),
           ),
         ),
         centerTitle: true,
       ),
+      backgroundColor: Color.fromRGBO(48, 48, 48, 1),
       body: Center(
         child: Column(
           children: [
             NewDropDownMenu(),
             Container(
+              color: Color.fromRGBO(48, 48, 48, 1),
               height: MediaQuery.of(context).size.height * 0.75,
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    color: Color.fromRGBO(16, 42, 67, 0.7),
                     elevation: 5,
                     margin: EdgeInsets.all(5),
                     child: ListTile(
@@ -124,13 +121,19 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                         width: 80,
                         child: Text(
                           strafenUiListe[index],
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: Color.fromRGBO(217, 226, 236, 1)),
                         ),
                       ),
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           IconButton(
-                              icon: Icon(Icons.add_circle),
+                              icon: Icon(
+                                Icons.add_circle,
+                                color: Color.fromRGBO(217, 226, 236, 1),
+                              ),
                               onPressed: () {
                                 setState(() {
                                   memberData.setStrafen(
@@ -143,13 +146,16 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                           Container(
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.black),
+                              color: Color.fromRGBO(217, 226, 236, 1),
                             ),
                             child: FutureBuilder(
                               future: memberData
                                   .getStrafenCount(strafenUiListe[index]),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
-                                  return Text("  " + snapshot.data + "  ");
+                                  return Text(
+                                    "    " + snapshot.data + "    ",
+                                  );
                                 } else {
                                   return Text("       ");
                                 }
@@ -160,7 +166,10 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                             width: 20,
                           ),
                           IconButton(
-                              icon: Icon(Icons.remove_circle),
+                              icon: Icon(
+                                Icons.remove_circle,
+                                color: Color.fromRGBO(217, 226, 236, 1),
+                              ),
                               onPressed: () {
                                 setState(() {
                                   memberData.setStrafenLower(

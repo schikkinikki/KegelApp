@@ -38,38 +38,38 @@ class _SessionScreenState extends State<SessionScreen> {
           GestureDetector(
             onTap: () => switchScreen(NewSessionScreen.routeName),
             child: Container(
+              height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                gradient: LinearGradient(
-                  begin: Alignment.bottomLeft,
-                  end: Alignment.topRight,
-                  colors: [Colors.red, Colors.deepOrange],
-                ),
+                color: Color.fromRGBO(16, 42, 67, 0.7),
               ),
               margin: EdgeInsets.all(20),
               padding: EdgeInsets.all(20),
-              child: Text(
-                "Neue Session",
-                style: TextStyle(fontSize: 20),
+              child: Center(
+                child: Text(
+                  "Neuer Kegelabend",
+                  style: TextStyle(
+                      fontSize: 25, color: Color.fromRGBO(217, 226, 236, 1)),
+                ),
               ),
             ),
           ),
           GestureDetector(
             onTap: () => switchScreen(OldSessionScreenV2.routeName),
             child: Container(
+              height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                gradient: LinearGradient(
-                  begin: Alignment.bottomLeft,
-                  end: Alignment.topRight,
-                  colors: [Colors.red, Colors.deepOrange],
-                ),
+                color: Color.fromRGBO(16, 42, 67, 0.7),
               ),
               margin: EdgeInsets.all(20),
               padding: EdgeInsets.all(20),
-              child: Text(
-                "Vergangene Sessions",
-                style: TextStyle(fontSize: 20),
+              child: Center(
+                child: Text(
+                  "Alter Kegelabend",
+                  style: TextStyle(
+                      fontSize: 25, color: Color.fromRGBO(217, 226, 236, 1)),
+                ),
               ),
             ),
           ),

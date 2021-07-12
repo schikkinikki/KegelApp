@@ -48,6 +48,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.8.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "launcher_assets/KegelLogo.png"
+  adaptive_icon_background: "#143787"
+  adaptive_icon_foreground: "launcher_assets/KegelLogo.png"
   
 
 # For information on the generic Dart part of this file, see the

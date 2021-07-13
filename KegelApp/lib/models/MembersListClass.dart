@@ -43,6 +43,9 @@ class MemberListClass extends ChangeNotifier {
     member.lustwurf = 0;
     member.durchwurf = 0;
     member.zweiPersonenAufDerBahn = 0;
+    member.kugelKlo = 0;
+    member.kugelFallenLassen = 0;
+    member.alleNeune = 0;
     member.isSelected = 0;
   }
 
@@ -95,6 +98,18 @@ class MemberListClass extends ChangeNotifier {
             kegelbruder.setLustwurf(1);
             await DBProvider.db.updateKegelbruder(kegelbruder);
             print("lustwurf" + kegelbruder.lustwurf.toString());
+            break;
+          case "Kugel zum Klo":
+            kegelbruder.setKugelZumKli(1);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            break;
+          case "Kugel fallenlassen":
+            kegelbruder.setKugelFallenLassen(1);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            break;
+          case "Alle Neune":
+            kegelbruder.setAlleNeune(1);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
             break;
           default:
             break;
@@ -155,6 +170,18 @@ class MemberListClass extends ChangeNotifier {
             await DBProvider.db.updateKegelbruder(kegelbruder);
             print("lustwurf" + kegelbruder.lustwurf.toString());
             break;
+          case "Kugel zum Klo":
+            kegelbruder.setKugelZumKli(-1);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            break;
+          case "Kugel fallenlassen":
+            kegelbruder.setKugelFallenLassen(-1);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            break;
+          case "Alle Neune":
+            kegelbruder.setAlleNeune(-1);
+            await DBProvider.db.updateKegelbruder(kegelbruder);
+            break;
           default:
             break;
         }
@@ -190,6 +217,15 @@ class MemberListClass extends ChangeNotifier {
         break;
       case "Lustwurf":
         return selectedPlayer.lustWurf.toString();
+        break;
+      case "Kugel zum Klo":
+        return selectedPlayer.kugelKlo.toString();
+        break;
+      case "Kugel fallenlassen":
+        return selectedPlayer.kugelFallenLassen.toString();
+        break;
+      case "Alle Neune":
+        return selectedPlayer.alleNeune.toString();
         break;
       default:
         break;

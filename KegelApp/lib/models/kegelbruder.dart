@@ -14,6 +14,9 @@ class Kegelbruder extends ChangeNotifier {
   int kugelBringen = 0;
   int zweiPersonenAufDerBahn = 0;
   int lustwurf = 0;
+  int kugelKlo = 0;
+  int kugelFallenLassen = 0;
+  int alleNeune = 0;
 
   Kegelbruder.c2();
 
@@ -29,6 +32,9 @@ class Kegelbruder extends ChangeNotifier {
       this.kugelBringen = 0,
       this.lustwurf = 0,
       this.zweiPersonenAufDerBahn = 0,
+      this.kugelKlo = 0,
+      this.kugelFallenLassen = 0,
+      this.alleNeune = 0,
       this.isSelected = 0});
 
   Kegelbruder get spieler {
@@ -57,6 +63,9 @@ class Kegelbruder extends ChangeNotifier {
         kugelBringen: json["kugelbringen"],
         lustwurf: json["lustwurf"],
         zweiPersonenAufDerBahn: json["zweiPersonenAufDerBahn"],
+        kugelKlo: json["kugelKlo"],
+        kugelFallenLassen: json["kugelFallenLassen"],
+        alleNeune: json["alleNeune"],
         isSelected: json["isSelected"]);
   }
 
@@ -72,6 +81,9 @@ class Kegelbruder extends ChangeNotifier {
       "kugelbringen": kugelBringen,
       "lustwurf": lustwurf,
       "zweiPersonenAufDerBahn": zweiPersonenAufDerBahn,
+      "kugelKlo": kugelKlo,
+      "kugelFallenLassen": kugelFallenLassen,
+      "alleNeune": alleNeune,
       "isSelected": isSelected
     };
   }
@@ -117,6 +129,18 @@ class Kegelbruder extends ChangeNotifier {
     return lustwurf;
   }
 
+  int get kugelZumKlo {
+    return kugelKlo;
+  }
+
+  int get kugelFallengelassen {
+    return kugelFallenLassen;
+  }
+
+  int get alleNeunegeworfen {
+    return alleNeune;
+  }
+
   void setPumpe(int strafe) {
     this.pumpe += strafe;
     notifyListeners();
@@ -154,6 +178,21 @@ class Kegelbruder extends ChangeNotifier {
 
   void setZuZweitaufDerBahn(int zuZweitaufDerBahn) {
     this.zweiPersonenAufDerBahn += zuZweitaufDerBahn;
+    notifyListeners();
+  }
+
+  void setKugelZumKli(int strafe) {
+    this.kugelKlo += strafe;
+    notifyListeners();
+  }
+
+  void setKugelFallenLassen(int strafe) {
+    this.kugelFallenLassen += strafe;
+    notifyListeners();
+  }
+
+  void setAlleNeune(int strafe) {
+    this.alleNeune += strafe;
     notifyListeners();
   }
 }

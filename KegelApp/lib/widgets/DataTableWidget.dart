@@ -73,6 +73,24 @@ class _DataTableWidgetState extends State<DataTableWidget> {
                 style: TextStyle(fontStyle: FontStyle.italic),
               ),
             ),
+            DataColumn(
+              label: Text(
+                "Kugel zum Klo",
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                "Kugel fallenlassen",
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                "Alle Neune",
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
           ],
           rows: widget.dataRows,
         ),

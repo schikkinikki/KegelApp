@@ -24,9 +24,9 @@ class DBProvider {
     return await openDatabase(join(await getDatabasesPath(), "kegelApp.db"),
         onCreate: (db, version) async {
       await db.execute(
-          '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, isSelected INTEGER)''');
+          '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isSelected INTEGER)''');
       await db.execute(
-          '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER)''');
+          '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER )''');
     }, version: 1);
   }
 
@@ -96,6 +96,9 @@ class DBProvider {
         kugelBringen: kegelbruder.kugelBringen,
         lustwurf: kegelbruder.lustwurf,
         zweiPersonenAufDerBahn: kegelbruder.zweiPersonenAufDerBahn,
+        kugelKlo: kegelbruder.kugelKlo,
+        kugelFallenLassen: kegelbruder.kugelFallenLassen,
+        alleNeune: kegelbruder.alleNeune,
         isSelected: kegelbruder.isSelected);
     var res = await db.update("kegelbruder", updateBruder.toMap(),
         where: "name = ?", whereArgs: [kegelbruder.name]);

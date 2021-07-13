@@ -23,6 +23,9 @@ class Session {
       "kugelbringen": kegelbruder.kugelBringen,
       "lustwurf": kegelbruder.lustwurf,
       "zweiPersonenAufDerBahn": kegelbruder.zweiPersonenAufDerBahn,
+      "kugelKlo": kegelbruder.kugelKlo,
+      "kugelFallenLassen": kegelbruder.kugelFallenLassen,
+      "alleNeune": kegelbruder.alleNeune
     };
   }
 
@@ -31,16 +34,18 @@ class Session {
     return new Session(
       date: json["date"],
       kegelbruder: new Kegelbruder(
-        name: json["name"],
-        pumpe: json["pumpe"],
-        klingeln: json["klingeln"],
-        stina: json["stina"],
-        durchwurf: json["durchwurf"],
-        handy: json["handy"],
-        kugelBringen: json["kugelbringen"],
-        lustwurf: json["lustwurf"],
-        zweiPersonenAufDerBahn: json["zweiPersonenAufDerBahn"],
-      ),
+          name: json["name"],
+          pumpe: json["pumpe"],
+          klingeln: json["klingeln"],
+          stina: json["stina"],
+          durchwurf: json["durchwurf"],
+          handy: json["handy"],
+          kugelBringen: json["kugelbringen"],
+          lustwurf: json["lustwurf"],
+          zweiPersonenAufDerBahn: json["zweiPersonenAufDerBahn"],
+          kugelKlo: json["kugelKlo"],
+          kugelFallenLassen: json["kugelFallenLassen"],
+          alleNeune: json["alleNeune"]),
     );
   }
 

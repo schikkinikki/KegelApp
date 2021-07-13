@@ -55,6 +55,18 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
             session.kegelbruder.lustwurf.toString(),
             textAlign: TextAlign.center,
           )),
+          DataCell(Text(
+            session.kegelbruder.kugelKlo.toString(),
+            textAlign: TextAlign.center,
+          )),
+          DataCell(Text(
+            session.kegelbruder.kugelFallenLassen.toString(),
+            textAlign: TextAlign.center,
+          )),
+          DataCell(Text(
+            session.kegelbruder.alleNeune.toString(),
+            textAlign: TextAlign.center,
+          )),
         ]),
       );
     });

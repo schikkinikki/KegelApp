@@ -30,7 +30,10 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
       "Handy",
       "Kugel bringen",
       "Zu 2. auf der Bahn",
-      "Lustwurf"
+      "Lustwurf",
+      "Kugel zum Klo",
+      "Kugel fallenlassen",
+      "Alle Neune"
     ];
 
     void saveAndResetSession() async {
@@ -158,7 +161,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                         width: 80,
                         child: Text(
                           strafenUiListe[index],
-                          style: TextStyle(fontSize: 17, color: color.greyText),
+                          style: TextStyle(color: color.greyText),
                         ),
                       ),
                       title: Row(

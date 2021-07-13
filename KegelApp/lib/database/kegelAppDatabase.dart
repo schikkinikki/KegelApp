@@ -26,7 +26,7 @@ class DBProvider {
       await db.execute(
           '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isSelected INTEGER, isKing INTEGER, isPumpenKing INTEGER)''');
       await db.execute(
-          '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER )''');
+          '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isKing INTEGER, isPumpenKing INTEGER)''');
     }, version: 1);
   }
 

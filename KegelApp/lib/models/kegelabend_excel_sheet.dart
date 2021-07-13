@@ -43,7 +43,12 @@ class ExcelCreator {
     excelSheet.getRangeByName("L1").setText("Alle Neune");
     excelSheet.getRangeByName("M1").setText("Strafen gesamt");
 
-    //fill sheet with data from saved session
+    setPlayerstoExcel(excelSheet);
+    setKingToExcel(excelSheet);
+  }
+
+  //fill sheet with data from saved session
+  void setPlayerstoExcel(Worksheet excelSheet) {
     int count = 0;
     while (count != sessionList.length) {
       Kegelbruder player = sessionList.elementAt(count).kegelbruder;
@@ -89,6 +94,42 @@ class ExcelCreator {
 
       count += 1;
     }
+  }
+
+  void setKingToExcel(Worksheet excelSheet) {
+    excelSheet
+        .getRangeByName("A" + (sessionList.length + 2).toString())
+        .setText("Kegelkönig:");
+    excelSheet
+        .getRangeByName("A" + (sessionList.length + 3).toString())
+        .setText("Pumpenkönig:");
+
+    excelSheet
+        .getRangeByName("B" + (sessionList.length + 3).toString())
+        .setText(getKing());
+    excelSheet
+        .getRangeByName("B" + (sessionList.length + 4).toString())
+        .setText(getPumpenKing());
+  }
+
+  String getKing() {
+    String king = "";
+    sessionList.forEach((session) {
+      if (session.kegelbruder.isKing == 1) {
+        king = session.kegelbruder.name;
+      }
+    });
+    return king;
+  }
+
+  String getPumpenKing() {
+    String pumpenKing = "";
+    sessionList.forEach((session) {
+      if (session.kegelbruder.isPumpenKing == 1) {
+        pumpenKing = session.kegelbruder.name;
+      }
+    });
+    return pumpenKing;
   }
 
   void sendEmail(String filePath) async {

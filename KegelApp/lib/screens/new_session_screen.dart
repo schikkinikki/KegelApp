@@ -4,11 +4,11 @@ import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
-import 'package:KegelApp/screens/sessions_screen.dart';
 import 'package:KegelApp/widgets/NewDropDownMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class NewSessionScreen extends StatefulWidget {
   static const routeName = "/new-session-screen";
@@ -175,6 +175,13 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                               ),
                               onPressed: () {
                                 setState(() {
+                                  if (strafenUiListe[index] == "Alle Neune") {
+                                    Fluttertoast.showToast(
+                                        msg:
+                                            "Alle Neune wurde für die andere Spieler hinzugefügt",
+                                        gravity: ToastGravity.BOTTOM,
+                                        toastLength: Toast.LENGTH_SHORT);
+                                  }
                                   memberData.setStrafen(
                                       index, strafenUiListe[index]);
                                 });

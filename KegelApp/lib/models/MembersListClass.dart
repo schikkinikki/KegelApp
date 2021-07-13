@@ -108,8 +108,12 @@ class MemberListClass extends ChangeNotifier {
             await DBProvider.db.updateKegelbruder(kegelbruder);
             break;
           case "Alle Neune":
-            kegelbruder.setAlleNeune(1);
-            await DBProvider.db.updateKegelbruder(kegelbruder);
+            kegelbruderListe.forEach((element) async {
+              if (element.isSelected == 0) {
+                element.setAlleNeune(1);
+                await DBProvider.db.updateKegelbruder(element);
+              }
+            });
             break;
           default:
             break;
@@ -179,8 +183,12 @@ class MemberListClass extends ChangeNotifier {
             await DBProvider.db.updateKegelbruder(kegelbruder);
             break;
           case "Alle Neune":
-            kegelbruder.setAlleNeune(-1);
-            await DBProvider.db.updateKegelbruder(kegelbruder);
+            kegelbruderListe.forEach((element) async {
+              if (element.isSelected == 0) {
+                element.setAlleNeune(1);
+                await DBProvider.db.updateKegelbruder(element);
+              }
+            });
             break;
           default:
             break;

@@ -3,8 +3,8 @@ import 'dart:convert';
 
 class Kegelbruder extends ChangeNotifier {
   String name;
-  bool isKing;
-  bool isPumpenKing;
+  int isKing = 0;
+  int isPumpenKing = 0;
   int isSelected = 0;
   int pumpe = 0;
   int klingeln = 0;
@@ -22,8 +22,8 @@ class Kegelbruder extends ChangeNotifier {
 
   Kegelbruder(
       {@required this.name,
-      this.isKing,
-      this.isPumpenKing,
+      this.isKing = 0,
+      this.isPumpenKing = 0,
       this.pumpe = 0,
       this.klingeln = 0,
       this.stina = 0,

@@ -4,6 +4,7 @@ import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
+import 'package:KegelApp/widgets/KingSelectDialog.dart';
 import 'package:KegelApp/widgets/NewDropDownMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -104,6 +105,15 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
       );
     }
 
+    void showKingSelectDialog() {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return KingSelectDialog();
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: color.darkBackground,
@@ -116,6 +126,9 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
               if (value == 2) {
                 showResetAlertDialog();
               }
+              if (value == 3) {
+                showKingSelectDialog();
+              }
             },
             itemBuilder: (_) => [
               PopupMenuItem(
@@ -125,7 +138,11 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
               PopupMenuItem(
                 child: Text(strings.newsessionscreen_popupmenu_reset),
                 value: 2,
-              )
+              ),
+              PopupMenuItem(
+                child: Text(strings.newsessionscreen_popupmenu_king),
+                value: 3,
+              ),
             ],
             icon: Icon(Icons.more_vert),
           )

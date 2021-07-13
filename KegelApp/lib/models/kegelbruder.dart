@@ -66,6 +66,8 @@ class Kegelbruder extends ChangeNotifier {
         kugelKlo: json["kugelKlo"],
         kugelFallenLassen: json["kugelFallenLassen"],
         alleNeune: json["alleNeune"],
+        isKing: json["isKing"],
+        isPumpenKing: json["isPumpenKing"],
         isSelected: json["isSelected"]);
   }
 
@@ -84,7 +86,9 @@ class Kegelbruder extends ChangeNotifier {
       "kugelKlo": kugelKlo,
       "kugelFallenLassen": kugelFallenLassen,
       "alleNeune": alleNeune,
-      "isSelected": isSelected
+      "isSelected": isSelected,
+      "isKing": isKing,
+      "isPumpenKing": isPumpenKing,
     };
   }
 
@@ -141,6 +145,14 @@ class Kegelbruder extends ChangeNotifier {
     return alleNeune;
   }
 
+  int get isKegelKoenig {
+    return isKing;
+  }
+
+  int get isPumpenKoenig {
+    return isPumpenKing;
+  }
+
   void setPumpe(int strafe) {
     this.pumpe += strafe;
     notifyListeners();
@@ -193,6 +205,16 @@ class Kegelbruder extends ChangeNotifier {
 
   void setAlleNeune(int strafe) {
     this.alleNeune += strafe;
+    notifyListeners();
+  }
+
+  void setIsKing(int checkbox) {
+    this.isKing += checkbox;
+    notifyListeners();
+  }
+
+  void setIsPumpenKing(int checkbox) {
+    this.isPumpenKing += checkbox;
     notifyListeners();
   }
 

@@ -24,7 +24,7 @@ class DBProvider {
     return await openDatabase(join(await getDatabasesPath(), "kegelApp.db"),
         onCreate: (db, version) async {
       await db.execute(
-          '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isSelected INTEGER)''');
+          '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isSelected INTEGER, isKing INTEGER, isPumpenKing INTEGER)''');
       await db.execute(
           '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER )''');
     }, version: 1);
@@ -99,6 +99,8 @@ class DBProvider {
         kugelKlo: kegelbruder.kugelKlo,
         kugelFallenLassen: kegelbruder.kugelFallenLassen,
         alleNeune: kegelbruder.alleNeune,
+        isKing: kegelbruder.isKing,
+        isPumpenKing: kegelbruder.isPumpenKing,
         isSelected: kegelbruder.isSelected);
     var res = await db.update("kegelbruder", updateBruder.toMap(),
         where: "name = ?", whereArgs: [kegelbruder.name]);

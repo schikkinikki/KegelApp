@@ -19,4 +19,5 @@ class KegelStrings {
       "Möchtest du wirklich den laufenden Abend zurücksetzen?";
   String newsessionscreen_popupmenu_save = "Kegelabend beenden";
   String newsessionscreen_popupmenu_reset = "Kegelabend zurücksetzen";
+  String newsessionscreen_popupmenu_king = "Könige auswählen";
 }

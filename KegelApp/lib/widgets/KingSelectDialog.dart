@@ -69,7 +69,10 @@ class _KingSelectDialogState extends State<KingSelectDialog> {
                       buttonPress = 1;
                     });
                   },
-                  child: Text("Kegelkönig"),
+                  child: Text(
+                    "Kegelkönig",
+                    style: TextStyle(fontSize: 18),
+                  ),
                   color: buttonPress == 1 ? color.blueContainer : Colors.white,
                 ),
                 FlatButton(
@@ -78,7 +81,10 @@ class _KingSelectDialogState extends State<KingSelectDialog> {
                       buttonPress = 2;
                     });
                   },
-                  child: Text("Pumpenkönig"),
+                  child: Text(
+                    "Pumpenkönig",
+                    style: TextStyle(fontSize: 18),
+                  ),
                   color: buttonPress == 2 ? color.blueContainer : Colors.white,
                 )
               ],
@@ -95,12 +101,15 @@ class _KingSelectDialogState extends State<KingSelectDialog> {
                       if (snapshot.hasData) {
                         List<Kegelbruder> kegelbruderListe = snapshot.data;
                         return Container(
-                          height: MediaQuery.of(context).size.height * 0.65,
+                          height: MediaQuery.of(context).size.height * 0.59,
                           child: ListView.builder(
                             itemCount: kegelbruderListe.length,
                             itemBuilder: (context, index) {
                               return ListTile(
-                                title: Text(kegelbruderListe[index].name),
+                                title: Text(
+                                  kegelbruderListe[index].name,
+                                  style: TextStyle(fontSize: 17),
+                                ),
                                 trailing: kegelbruderListe[index].isKing == 1
                                     ? Icon(Icons.check_box)
                                     : Icon(Icons.check_box_outline_blank),
@@ -127,12 +136,15 @@ class _KingSelectDialogState extends State<KingSelectDialog> {
                       if (snapshot.hasData) {
                         List<Kegelbruder> kegelbruderListeZwei = snapshot.data;
                         return Container(
-                          height: MediaQuery.of(context).size.height * 0.65,
+                          height: MediaQuery.of(context).size.height * 0.59,
                           child: ListView.builder(
                             itemCount: kegelbruderListeZwei.length,
                             itemBuilder: (context, index) {
                               return ListTile(
-                                title: Text(kegelbruderListeZwei[index].name),
+                                title: Text(
+                                  kegelbruderListeZwei[index].name,
+                                  style: TextStyle(fontSize: 17),
+                                ),
                                 trailing:
                                     kegelbruderListeZwei[index].isPumpenKing ==
                                             1
@@ -151,6 +163,21 @@ class _KingSelectDialogState extends State<KingSelectDialog> {
                       }
                     },
                   ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("Okay")),
+                FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("Abbrechen"))
+              ],
+            ),
           ],
         ),
       ),

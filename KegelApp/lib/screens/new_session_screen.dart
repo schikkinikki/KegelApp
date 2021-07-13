@@ -1,4 +1,5 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
+import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
@@ -18,6 +19,7 @@ class NewSessionScreen extends StatefulWidget {
 class _NewSessionScreenState extends State<NewSessionScreen> {
   @override
   Widget build(BuildContext context) {
+    KegelColor color = new KegelColor();
     KegelStrings strings = new KegelStrings();
     final memberData = Provider.of<MemberListClass>(context);
     final List<String> strafenUiListe = [
@@ -100,7 +102,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(48, 48, 48, 1),
+        backgroundColor: color.darkBackground,
         actions: [
           PopupMenuButton(
             onSelected: (value) {
@@ -129,25 +131,25 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 30,
-            color: Color.fromRGBO(217, 226, 236, 1),
+            color: color.greyText,
           ),
         ),
         centerTitle: true,
       ),
-      backgroundColor: Color.fromRGBO(48, 48, 48, 1),
+      backgroundColor: color.darkBackground,
       body: Center(
         child: Column(
           children: [
             NewDropDownMenu(),
             Container(
-              color: Color.fromRGBO(48, 48, 48, 1),
+              color: color.darkBackground,
               height: MediaQuery.of(context).size.height * 0.75,
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return Card(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
-                    color: Color.fromRGBO(16, 42, 67, 0.7),
+                    color: color.blueContainer,
                     elevation: 5,
                     margin: EdgeInsets.all(5),
                     child: ListTile(
@@ -156,9 +158,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                         width: 80,
                         child: Text(
                           strafenUiListe[index],
-                          style: TextStyle(
-                              fontSize: 17,
-                              color: Color.fromRGBO(217, 226, 236, 1)),
+                          style: TextStyle(fontSize: 17, color: color.greyText),
                         ),
                       ),
                       title: Row(
@@ -167,7 +167,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                           IconButton(
                               icon: Icon(
                                 Icons.add_circle,
-                                color: Color.fromRGBO(217, 226, 236, 1),
+                                color: color.greyText,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -181,7 +181,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                           Container(
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.black),
-                              color: Color.fromRGBO(217, 226, 236, 1),
+                              color: color.greyText,
                             ),
                             child: FutureBuilder(
                               future: memberData
@@ -203,7 +203,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                           IconButton(
                               icon: Icon(
                                 Icons.remove_circle,
-                                color: Color.fromRGBO(217, 226, 236, 1),
+                                color: color.greyText,
                               ),
                               onPressed: () {
                                 setState(() {

@@ -1,4 +1,5 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
+import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
@@ -13,6 +14,7 @@ class MyClubScreen extends StatefulWidget {
 }
 
 class _MyClubScreenState extends State<MyClubScreen> {
+  KegelColor color = new KegelColor();
   KegelStrings strings = new KegelStrings();
 
   //get Textfield input
@@ -92,25 +94,23 @@ class _MyClubScreenState extends State<MyClubScreen> {
                         margin: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          color: Color.fromRGBO(16, 42, 67, 0.7),
+                          color: color.blueContainer,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Icon(Icons.perm_identity,
-                                size: 32,
-                                color: Color.fromRGBO(217, 226, 236, 1)),
+                                size: 32, color: color.greyText),
                             Text(
                               player.name,
                               style: TextStyle(
-                                  fontSize: 20,
-                                  color: Color.fromRGBO(217, 226, 236, 1)),
+                                  fontSize: 20, color: color.greyText),
                             ),
                             IconButton(
                                 icon: Icon(
                                   Icons.delete,
                                   size: 32,
-                                  color: Color.fromRGBO(217, 226, 236, 1),
+                                  color: color.greyText,
                                 ),
                                 onPressed: () {
                                   DBProvider.db.deleteKegelbruder(player.name);
@@ -145,13 +145,13 @@ class _MyClubScreenState extends State<MyClubScreen> {
                 },
                 icon: Icon(
                   Icons.person_add,
-                  color: Color.fromRGBO(217, 226, 236, 1),
+                  color: color.greyText,
                 ),
                 label: Text(
                   strings.myclubscreen_add_member,
-                  style: TextStyle(color: Color.fromRGBO(217, 226, 236, 0.7)),
+                  style: TextStyle(color: color.greyText),
                 ),
-                color: Color.fromRGBO(16, 42, 67, 0.7),
+                color: color.blueContainer,
               ),
             );
           },

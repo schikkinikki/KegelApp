@@ -1,4 +1,5 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
+import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/models/kegelabend_excel_sheet.dart';
 import 'package:KegelApp/models/session.dart';
 import 'package:KegelApp/screens/old_session_detail_screen.dart';
@@ -11,6 +12,7 @@ class OldSessionScreenV2 extends StatefulWidget {
 }
 
 class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
+  KegelColor color = new KegelColor();
   bool isExpanded = false;
 
   //add rows to a list of DataRows to pass them to the DatatableWidget
@@ -64,15 +66,14 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(48, 48, 48, 1),
+        backgroundColor: color.darkBackground,
         title: Text(
           "Alte Kegelabende",
-          style:
-              TextStyle(fontSize: 30, color: Color.fromRGBO(217, 226, 236, 1)),
+          style: TextStyle(fontSize: 30, color: color.greyText),
         ),
         centerTitle: true,
       ),
-      backgroundColor: Color.fromRGBO(48, 48, 48, 1),
+      backgroundColor: color.darkBackground,
       body: FutureBuilder(
         future: DBProvider.db.getAllSessions(),
         builder: (context, snapshot) {
@@ -97,20 +98,19 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
                             borderRadius: BorderRadius.circular(15),
-                            color: Color.fromRGBO(16, 42, 67, 0.7)),
+                            color: color.blueContainer),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
                               dataMap.keys.elementAt(index),
                               style: TextStyle(
-                                  fontSize: 20,
-                                  color: Color.fromRGBO(217, 226, 236, 1)),
+                                  fontSize: 20, color: color.greyText),
                             ),
                             IconButton(
                                 icon: Icon(
                                   Icons.arrow_downward_rounded,
-                                  color: Color.fromRGBO(217, 226, 236, 1),
+                                  color: color.greyText,
                                   size: 28,
                                 ),
                                 onPressed: () {
@@ -127,7 +127,7 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
                             borderRadius: BorderRadius.circular(15),
-                            color: Color.fromRGBO(16, 42, 67, 0.7)),
+                            color: color.blueContainer),
                         child: Column(
                           children: [
                             Row(
@@ -136,13 +136,12 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                                 Text(
                                   dataMap.keys.elementAt(index),
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      color: Color.fromRGBO(217, 226, 236, 1)),
+                                      fontSize: 20, color: color.greyText),
                                 ),
                                 IconButton(
                                     icon: Icon(
                                       Icons.arrow_upward_rounded,
-                                      color: Color.fromRGBO(217, 226, 236, 1),
+                                      color: color.greyText,
                                       size: 28,
                                     ),
                                     onPressed: () {

@@ -1,3 +1,4 @@
+import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/screens/new_session_screen.dart';
 import 'package:KegelApp/screens/old_session_screen_v2.dart';
@@ -11,6 +12,7 @@ class SessionScreen extends StatefulWidget {
 }
 
 class _SessionScreenState extends State<SessionScreen> {
+  KegelColor color = new KegelColor();
   KegelStrings strings = new KegelStrings();
 
   //zum nächsten SessionScreen wechseln
@@ -44,15 +46,14 @@ class _SessionScreenState extends State<SessionScreen> {
               height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Color.fromRGBO(16, 42, 67, 0.7),
+                color: color.blueContainer,
               ),
               margin: EdgeInsets.all(20),
               padding: EdgeInsets.all(20),
               child: Center(
                 child: Text(
                   strings.sessionscreen_new_session,
-                  style: TextStyle(
-                      fontSize: 25, color: Color.fromRGBO(217, 226, 236, 1)),
+                  style: TextStyle(fontSize: 25, color: color.greyText),
                 ),
               ),
             ),
@@ -63,15 +64,14 @@ class _SessionScreenState extends State<SessionScreen> {
               height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Color.fromRGBO(16, 42, 67, 0.7),
+                color: color.blueContainer,
               ),
               margin: EdgeInsets.all(20),
               padding: EdgeInsets.all(20),
               child: Center(
                 child: Text(
                   strings.sessionscreen_old_sessions,
-                  style: TextStyle(
-                      fontSize: 25, color: Color.fromRGBO(217, 226, 236, 1)),
+                  style: TextStyle(fontSize: 25, color: color.greyText),
                 ),
               ),
             ),

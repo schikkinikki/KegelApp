@@ -195,4 +195,33 @@ class Kegelbruder extends ChangeNotifier {
     this.alleNeune += strafe;
     notifyListeners();
   }
+
+  double sumAll(Kegelbruder kegelbruder) {
+    double sum = 0;
+    double pumpenGeld = kegelbruder.pumpe * 0.1;
+    double klingelGeld = kegelbruder.klingeln * 0.1;
+    double kugelBringenGeld = kegelbruder.kugelBringen * 1.0;
+    double handyGeld = kegelbruder.handy * 5.0;
+    double zuZweitAufDerBahnGeld = kegelbruder.zweiPersonenAufDerBahn * 1.0;
+    double stinaGeld = kegelbruder.stina * 0.2;
+    double lustwurfGeld = kegelbruder.lustwurf * 0.5;
+    double durchwurfGeld = kegelbruder.durchwurf * 0.5;
+    double kugelKloGeld = kegelbruder.kugelKlo * 2.5;
+    double kugelFallenLassenGeld = kegelbruder.kugelFallenLassen * 1.0;
+    double alleNeuneGeld = kegelbruder.alleNeune * 0.1;
+
+    sum = pumpenGeld +
+        klingelGeld +
+        kugelBringenGeld +
+        handyGeld +
+        zuZweitAufDerBahnGeld +
+        stinaGeld +
+        lustwurfGeld +
+        durchwurfGeld +
+        kugelKloGeld +
+        kugelFallenLassenGeld +
+        alleNeuneGeld;
+
+    return sum;
+  }
 }

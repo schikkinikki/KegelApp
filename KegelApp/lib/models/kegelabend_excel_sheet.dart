@@ -41,6 +41,7 @@ class ExcelCreator {
     excelSheet.getRangeByName("J1").setText("Kugel zum Klo");
     excelSheet.getRangeByName("K1").setText("Kugel fallenlasse");
     excelSheet.getRangeByName("L1").setText("Alle Neune");
+    excelSheet.getRangeByName("M1").setText("Strafen gesamt");
 
     //fill sheet with data from saved session
     int count = 0;
@@ -82,6 +83,9 @@ class ExcelCreator {
       excelSheet
           .getRangeByName("L" + (count + 2).toString())
           .setNumber(player.alleNeune.toDouble());
+      excelSheet
+          .getRangeByName("M" + (count + 2).toString())
+          .setNumber(player.sumAll(player));
 
       count += 1;
     }

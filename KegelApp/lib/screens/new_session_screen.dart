@@ -47,7 +47,6 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
         await DBProvider.db.addSession(session);
         print("session with " + member.name + "was added");
       });
-      Navigator.pushNamed(context, SessionScreen.routeName);
     }
 
     void showCustomAlertDialog() {

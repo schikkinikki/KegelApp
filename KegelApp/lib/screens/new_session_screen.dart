@@ -48,11 +48,39 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
           return AlertDialog(
             title: const Text("Speichern und beenden"),
             content: const Text(
-                "Möchtest du wirklich die laufende Session speichern und beenden? Alle Einträge werden dabei auf null zurückgesetzt!"),
+                "Möchtest du wirklich den laufenden Abend speichern und beenden? Alle Einträge werden dabei auf null zurückgesetzt!"),
             actions: [
               FlatButton(
                 onPressed: () {
                   saveAndResetSession();
+                  memberData.startNewSession();
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Okay"),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Nein"),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+    void showResetAlertDialog() {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Kegelabend zurücksetzen?"),
+            content: const Text(
+                "Möchtest du wirklich den laufenden Abend zurücksetzen?"),
+            actions: [
+              FlatButton(
+                onPressed: () {
                   memberData.startNewSession();
                   Navigator.of(context).pop();
                 },
@@ -79,12 +107,19 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
               if (value == 1) {
                 showCustomAlertDialog();
               }
+              if (value == 2) {
+                showResetAlertDialog();
+              }
             },
             itemBuilder: (_) => [
               PopupMenuItem(
-                child: Text("Session beenden"),
+                child: Text("Kegelabend beenden"),
                 value: 1,
               ),
+              PopupMenuItem(
+                child: Text("Kegelabend zurücksetzen"),
+                value: 2,
+              )
             ],
             icon: Icon(Icons.more_vert),
           )

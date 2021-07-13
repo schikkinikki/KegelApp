@@ -13,7 +13,7 @@ class OldSessionScreenV2 extends StatefulWidget {
 
 class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
   KegelColor color = new KegelColor();
-  bool isExpanded = false;
+  int isExpanded = 0;
 
   //add rows to a list of DataRows to pass them to the DatatableWidget
   List<DataRow> addRow(List<Session> sessionList) {
@@ -74,6 +74,27 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
     return dataRows;
   }
 
+  void changeSelection(String date) async {
+    List<Session> sessionListe = await DBProvider.db.getAllSessions();
+    sessionListe.forEach((session) async {
+      if (session.date == date) {
+        session.setSelected(1);
+        await DBProvider.db.updateSession(session);
+        print(session.date + " " + session.isSelected.toString());
+      }
+      if (session.date != date) {
+        session.isSelected = 0;
+        await DBProvider.db.updateSession(session);
+        print(session.date + " " + session.isSelected.toString());
+      }
+      if (session.isSelected > 1) {
+        session.isSelected = 0;
+        await DBProvider.db.updateSession(session);
+        print(session.date + " " + session.isSelected.toString());
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,10 +124,16 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                       ifAbsent: () => [element]));
             return ListView.builder(
               itemBuilder: (context, index) {
-                return !isExpanded
+                return dataMap.values
+                        .elementAt(index)
+                        .any((element) => element.isSelected == 0)
                     ? Container(
                         margin: EdgeInsets.all(15),
-                        height: isExpanded ? 100 : 50,
+                        height: dataMap.values.elementAt(index).any((element) =>
+                                element.isSelected == 0 ||
+                                element.isSelected == 2)
+                            ? 50
+                            : 100,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
                             borderRadius: BorderRadius.circular(15),
@@ -127,7 +154,8 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    isExpanded = !isExpanded;
+                                    changeSelection(
+                                        dataMap.keys.elementAt(index));
                                   });
                                 }),
                           ],
@@ -135,7 +163,11 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                       )
                     : Container(
                         margin: EdgeInsets.all(15),
-                        height: isExpanded ? 100 : 50,
+                        height: dataMap.values.elementAt(index).any((element) =>
+                                element.isSelected == 0 ||
+                                element.isSelected == 2)
+                            ? 50
+                            : 100,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
                             borderRadius: BorderRadius.circular(15),
@@ -158,7 +190,8 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                                     ),
                                     onPressed: () {
                                       setState(() {
-                                        isExpanded = !isExpanded;
+                                        changeSelection(
+                                            dataMap.keys.elementAt(index));
                                       });
                                     }),
                               ],

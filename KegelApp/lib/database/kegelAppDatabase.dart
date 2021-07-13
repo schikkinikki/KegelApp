@@ -26,7 +26,7 @@ class DBProvider {
       await db.execute(
           '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isSelected INTEGER, isKing INTEGER, isPumpenKing INTEGER)''');
       await db.execute(
-          '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isKing INTEGER, isPumpenKing INTEGER)''');
+          '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isKing INTEGER, isPumpenKing INTEGER, isSelected INTEGER)''');
     }, version: 1);
   }
 
@@ -75,6 +75,18 @@ class DBProvider {
     List<Session> list =
         res.isNotEmpty ? res.map((e) => Session.fromMap(e)).toList() : [];
     return list;
+  }
+
+  //update a entry from session table
+  updateSession(Session session) async {
+    final db = await database;
+    Session updateSession = Session(
+        date: session.date,
+        kegelbruder: session.kegelbruder,
+        isSelected: session.isSelected);
+    var res = await db.update("session", updateSession.toMap(),
+        where: "date = ?", whereArgs: [session.date]);
+    return res;
   }
 
   //delete a entry from kegelbruder table

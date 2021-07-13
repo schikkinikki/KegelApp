@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 class Session {
   String date;
   Kegelbruder kegelbruder;
+  int isSelected = 0;
 
-  Session({this.date, this.kegelbruder});
+  Session({this.date, this.kegelbruder, this.isSelected = 0});
 
   //Map for database
   Map<String, dynamic> toMap() {
@@ -27,7 +28,8 @@ class Session {
       "kugelFallenLassen": kegelbruder.kugelFallenLassen,
       "alleNeune": kegelbruder.alleNeune,
       "isKing": kegelbruder.isKing,
-      "isPumpenKing": kegelbruder.isPumpenKing
+      "isPumpenKing": kegelbruder.isPumpenKing,
+      "isSelected": isSelected
     };
   }
 
@@ -35,6 +37,7 @@ class Session {
   factory Session.fromMap(Map<String, dynamic> json) {
     return new Session(
       date: json["date"],
+      isSelected: json["isSelected"],
       kegelbruder: new Kegelbruder(
           name: json["name"],
           pumpe: json["pumpe"],
@@ -61,6 +64,10 @@ class Session {
   Session clienFromJson(String str) {
     final jsonData = jsonDecode(str);
     return Session.fromMap(jsonData);
+  }
+
+  void setSelected(int selection) {
+    this.isSelected += selection;
   }
 }
 

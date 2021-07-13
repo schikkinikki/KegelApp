@@ -1,4 +1,5 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
+import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
@@ -17,6 +18,7 @@ class NewSessionScreen extends StatefulWidget {
 class _NewSessionScreenState extends State<NewSessionScreen> {
   @override
   Widget build(BuildContext context) {
+    KegelStrings strings = new KegelStrings();
     final memberData = Provider.of<MemberListClass>(context);
     final List<String> strafenUiListe = [
       "Pumpe",
@@ -46,9 +48,8 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text("Speichern und beenden"),
-            content: const Text(
-                "Möchtest du wirklich den laufenden Abend speichern und beenden? Alle Einträge werden dabei auf null zurückgesetzt!"),
+            title: Text(strings.newsessionscreen_save_exit),
+            content: Text(strings.newsessionscreen_dialog_save),
             actions: [
               FlatButton(
                 onPressed: () {
@@ -75,9 +76,8 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text("Kegelabend zurücksetzen?"),
-            content: const Text(
-                "Möchtest du wirklich den laufenden Abend zurücksetzen?"),
+            title: Text(strings.newsessionscreen_reset),
+            content: Text(strings.newsessionscreen_dialog_reset),
             actions: [
               FlatButton(
                 onPressed: () {
@@ -113,11 +113,11 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
             },
             itemBuilder: (_) => [
               PopupMenuItem(
-                child: Text("Kegelabend beenden"),
+                child: Text(strings.newsessionscreen_popupmenu_save),
                 value: 1,
               ),
               PopupMenuItem(
-                child: Text("Kegelabend zurücksetzen"),
+                child: Text(strings.newsessionscreen_popupmenu_reset),
                 value: 2,
               )
             ],

@@ -1,3 +1,4 @@
+import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/screens/new_session_screen.dart';
 import 'package:KegelApp/screens/old_session_screen_v2.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ class SessionScreen extends StatefulWidget {
 }
 
 class _SessionScreenState extends State<SessionScreen> {
+  KegelStrings strings = new KegelStrings();
+
   //zum nächsten SessionScreen wechseln
   void switchScreen(var routeName) {
     var screenRoute = routeName;
@@ -47,7 +50,7 @@ class _SessionScreenState extends State<SessionScreen> {
               padding: EdgeInsets.all(20),
               child: Center(
                 child: Text(
-                  "Neuer Kegelabend",
+                  strings.sessionscreen_new_session,
                   style: TextStyle(
                       fontSize: 25, color: Color.fromRGBO(217, 226, 236, 1)),
                 ),
@@ -66,7 +69,7 @@ class _SessionScreenState extends State<SessionScreen> {
               padding: EdgeInsets.all(20),
               child: Center(
                 child: Text(
-                  "Alter Kegelabend",
+                  strings.sessionscreen_old_sessions,
                   style: TextStyle(
                       fontSize: 25, color: Color.fromRGBO(217, 226, 236, 1)),
                 ),

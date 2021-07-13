@@ -1,4 +1,5 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
+import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,8 @@ class MyClubScreen extends StatefulWidget {
 }
 
 class _MyClubScreenState extends State<MyClubScreen> {
+  KegelStrings strings = new KegelStrings();
+
   //get Textfield input
   final myController = TextEditingController();
 
@@ -27,12 +30,12 @@ class _MyClubScreenState extends State<MyClubScreen> {
         context: context,
         builder: (BuildContext context) {
           return SimpleDialog(
-            title: Text("Clubmitglied hinzufügen"),
+            title: Text(strings.myclubscreen_add_member),
             children: [
               SimpleDialogOption(
                 child: Column(
                   children: [
-                    Text("Namen eingeben:"),
+                    Text(strings.myclubscreen_add_name),
                     TextField(
                       controller: myController,
                     ),
@@ -42,7 +45,7 @@ class _MyClubScreenState extends State<MyClubScreen> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text("Abbrechen"),
+                          child: Text(strings.myclubscreen_stop),
                         ),
                         FlatButton(
                           onPressed: () {
@@ -54,7 +57,7 @@ class _MyClubScreenState extends State<MyClubScreen> {
                             setState(() {});
                             Navigator.of(context).pop();
                           },
-                          child: Text("Hinzufügen"),
+                          child: Text(strings.myclubscreen_add),
                         ),
                       ],
                     ),
@@ -122,7 +125,7 @@ class _MyClubScreenState extends State<MyClubScreen> {
               );
             } else {
               return Center(
-                child: Text("Bitte Spieler hinzufügen"),
+                child: Text(strings.myclubscreen_no_player),
               );
             }
           },
@@ -145,7 +148,7 @@ class _MyClubScreenState extends State<MyClubScreen> {
                   color: Color.fromRGBO(217, 226, 236, 1),
                 ),
                 label: Text(
-                  "Clubmitglied hinzufügen",
+                  strings.myclubscreen_add_member,
                   style: TextStyle(color: Color.fromRGBO(217, 226, 236, 0.7)),
                 ),
                 color: Color.fromRGBO(16, 42, 67, 0.7),

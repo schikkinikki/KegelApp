@@ -4,6 +4,7 @@ import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
+import 'package:KegelApp/screens/sessions_screen.dart';
 import 'package:KegelApp/widgets/NewDropDownMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -46,6 +47,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
         await DBProvider.db.addSession(session);
         print("session with " + member.name + "was added");
       });
+      Navigator.pushNamed(context, SessionScreen.routeName);
     }
 
     void showCustomAlertDialog() {

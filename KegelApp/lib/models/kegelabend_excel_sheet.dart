@@ -1,5 +1,6 @@
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
+import 'package:open_file/open_file.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -21,7 +22,8 @@ class ExcelCreator {
     final String excelFileName = "$excelPath/Kegelabend.xlsx";
     final File excelFile = File(excelFileName);
     await excelFile.writeAsBytes(excelBytes, flush: true);
-    sendEmail(excelFileName);
+    //sendEmail(excelFileName);
+    OpenFile.open(excelFileName);
   }
 
   //create basic headers for the sheet
@@ -36,6 +38,9 @@ class ExcelCreator {
     excelSheet.getRangeByName("G1").setText("Kugel bringen");
     excelSheet.getRangeByName("H1").setText("2. auf der Bahn");
     excelSheet.getRangeByName("I1").setText("Lustwurf");
+    excelSheet.getRangeByName("J1").setText("Kugel zum Klo");
+    excelSheet.getRangeByName("K1").setText("Kugel fallenlasse");
+    excelSheet.getRangeByName("L1").setText("Alle Neune");
 
     //fill sheet with data from saved session
     int count = 0;
@@ -68,6 +73,15 @@ class ExcelCreator {
       excelSheet
           .getRangeByName("I" + (count + 2).toString())
           .setNumber(player.lustwurf.toDouble());
+      excelSheet
+          .getRangeByName("J" + (count + 2).toString())
+          .setNumber(player.kugelKlo.toDouble());
+      excelSheet
+          .getRangeByName("K" + (count + 2).toString())
+          .setNumber(player.kugelFallenLassen.toDouble());
+      excelSheet
+          .getRangeByName("L" + (count + 2).toString())
+          .setNumber(player.alleNeune.toDouble());
 
       count += 1;
     }

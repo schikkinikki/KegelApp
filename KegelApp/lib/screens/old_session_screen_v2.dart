@@ -13,7 +13,7 @@ class OldSessionScreenV2 extends StatefulWidget {
 
 class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
   KegelColor color = new KegelColor();
-  int isExpanded = 0;
+  int isExpanded = -1;
 
   //add rows to a list of DataRows to pass them to the DatatableWidget
   List<DataRow> addRow(List<Session> sessionList) {
@@ -74,25 +74,12 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
     return dataRows;
   }
 
-  void changeSelection(String date) async {
-    List<Session> sessionListe = await DBProvider.db.getAllSessions();
-    sessionListe.forEach((session) async {
-      if (session.date == date) {
-        session.setSelected(1);
-        await DBProvider.db.updateSession(session);
-        print(session.date + " " + session.isSelected.toString());
-      }
-      if (session.date != date) {
-        session.isSelected = 0;
-        await DBProvider.db.updateSession(session);
-        print(session.date + " " + session.isSelected.toString());
-      }
-      if (session.isSelected > 1) {
-        session.isSelected = 0;
-        await DBProvider.db.updateSession(session);
-        print(session.date + " " + session.isSelected.toString());
-      }
-    });
+  void changesSelection(int newValue) {
+    if (isExpanded == -1) {
+      isExpanded = newValue;
+    } else {
+      isExpanded = -1;
+    }
   }
 
   @override
@@ -124,16 +111,10 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                       ifAbsent: () => [element]));
             return ListView.builder(
               itemBuilder: (context, index) {
-                return dataMap.values
-                        .elementAt(index)
-                        .any((element) => element.isSelected == 0)
+                return isExpanded != index
                     ? Container(
                         margin: EdgeInsets.all(15),
-                        height: dataMap.values.elementAt(index).any((element) =>
-                                element.isSelected == 0 ||
-                                element.isSelected == 2)
-                            ? 50
-                            : 100,
+                        height: isExpanded != index ? 50 : 100,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
                             borderRadius: BorderRadius.circular(15),
@@ -154,8 +135,7 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    changeSelection(
-                                        dataMap.keys.elementAt(index));
+                                    changesSelection(index);
                                   });
                                 }),
                           ],
@@ -163,11 +143,7 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                       )
                     : Container(
                         margin: EdgeInsets.all(15),
-                        height: dataMap.values.elementAt(index).any((element) =>
-                                element.isSelected == 0 ||
-                                element.isSelected == 2)
-                            ? 50
-                            : 100,
+                        height: isExpanded != index ? 50 : 100,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
                             borderRadius: BorderRadius.circular(15),
@@ -190,8 +166,7 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
                                     ),
                                     onPressed: () {
                                       setState(() {
-                                        changeSelection(
-                                            dataMap.keys.elementAt(index));
+                                        changesSelection(index);
                                       });
                                     }),
                               ],

@@ -98,10 +98,10 @@ class ExcelCreator {
 
   void setKingToExcel(Worksheet excelSheet) {
     excelSheet
-        .getRangeByName("A" + (sessionList.length + 2).toString())
+        .getRangeByName("A" + (sessionList.length + 3).toString())
         .setText("Kegelkönig:");
     excelSheet
-        .getRangeByName("A" + (sessionList.length + 3).toString())
+        .getRangeByName("A" + (sessionList.length + 4).toString())
         .setText("Pumpenkönig:");
 
     excelSheet

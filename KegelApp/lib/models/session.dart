@@ -28,6 +28,9 @@ class Session {
       "alleNeune": kegelbruder.alleNeune,
       "isKing": kegelbruder.isKing,
       "isPumpenKing": kegelbruder.isPumpenKing,
+      "anwesend": kegelbruder.anwesend,
+      "abwesend": kegelbruder.abwesend,
+      "unabgemeldet": kegelbruder.unabgemeldet
     };
   }
 
@@ -49,7 +52,10 @@ class Session {
           kugelFallenLassen: json["kugelFallenLassen"],
           alleNeune: json["alleNeune"],
           isKing: json["isKing"],
-          isPumpenKing: json["isPumpenKing"]),
+          isPumpenKing: json["isPumpenKing"],
+          anwesend: json["anwesend"],
+          abwesend: json["abwesend"],
+          unabgemeldet: json["unabgemeldet"]),
     );
   }
 

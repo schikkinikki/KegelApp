@@ -17,6 +17,9 @@ class Kegelbruder extends ChangeNotifier {
   int kugelKlo = 0;
   int kugelFallenLassen = 0;
   int alleNeune = 0;
+  int anwesend = 0;
+  int abwesend = 0;
+  int unabgemeldet = 0;
 
   Kegelbruder.c2();
 
@@ -35,7 +38,10 @@ class Kegelbruder extends ChangeNotifier {
       this.kugelKlo = 0,
       this.kugelFallenLassen = 0,
       this.alleNeune = 0,
-      this.isSelected = 0});
+      this.isSelected = 0,
+      this.abwesend = 0,
+      this.anwesend = 0,
+      this.unabgemeldet = 0});
 
   Kegelbruder get spieler {
     return spieler;
@@ -68,7 +74,10 @@ class Kegelbruder extends ChangeNotifier {
         alleNeune: json["alleNeune"],
         isKing: json["isKing"],
         isPumpenKing: json["isPumpenKing"],
-        isSelected: json["isSelected"]);
+        isSelected: json["isSelected"],
+        anwesend: json["anwesend"],
+        abwesend: json["abwesend"],
+        unabgemeldet: json["unabgemeldet"]);
   }
 
   //Map for database
@@ -89,6 +98,9 @@ class Kegelbruder extends ChangeNotifier {
       "isSelected": isSelected,
       "isKing": isKing,
       "isPumpenKing": isPumpenKing,
+      "anwesend": anwesend,
+      "abwesend": abwesend,
+      "unabgemeldet": unabgemeldet
     };
   }
 
@@ -153,6 +165,18 @@ class Kegelbruder extends ChangeNotifier {
     return isPumpenKing;
   }
 
+  int get isAnwesend {
+    return anwesend;
+  }
+
+  int get getAbwesend {
+    return abwesend;
+  }
+
+  int get isUnabgemeldet {
+    return unabgemeldet;
+  }
+
   void setPumpe(int strafe) {
     this.pumpe += strafe;
     notifyListeners();
@@ -215,6 +239,21 @@ class Kegelbruder extends ChangeNotifier {
 
   void setIsPumpenKing(int checkbox) {
     this.isPumpenKing += checkbox;
+    notifyListeners();
+  }
+
+  void setAnwesend(int checkbox) {
+    this.anwesend += checkbox;
+    notifyListeners();
+  }
+
+  void setAbwesend(int checkbox) {
+    this.abwesend += checkbox;
+    notifyListeners();
+  }
+
+  void setUnabgemeldet(int checkbox) {
+    this.unabgemeldet += checkbox;
     notifyListeners();
   }
 

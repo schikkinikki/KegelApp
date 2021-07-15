@@ -24,9 +24,9 @@ class DBProvider {
     return await openDatabase(join(await getDatabasesPath(), "kegelApp.db"),
         onCreate: (db, version) async {
       await db.execute(
-          '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isSelected INTEGER, isKing INTEGER, isPumpenKing INTEGER)''');
+          '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isSelected INTEGER, isKing INTEGER, isPumpenKing INTEGER, anwesend INTEGER, abwesend INTEGER, unabgemeldet INTEGER)''');
       await db.execute(
-          '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isKing INTEGER, isPumpenKing INTEGER)''');
+          '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isKing INTEGER, isPumpenKing INTEGER, anwesend INTEGER, abwesend INTEGER, unabgemeldet INTEGER)''');
     }, version: 1);
   }
 
@@ -101,6 +101,9 @@ class DBProvider {
         alleNeune: kegelbruder.alleNeune,
         isKing: kegelbruder.isKing,
         isPumpenKing: kegelbruder.isPumpenKing,
+        anwesend: kegelbruder.anwesend,
+        abwesend: kegelbruder.abwesend,
+        unabgemeldet: kegelbruder.unabgemeldet,
         isSelected: kegelbruder.isSelected);
     var res = await db.update("kegelbruder", updateBruder.toMap(),
         where: "name = ?", whereArgs: [kegelbruder.name]);

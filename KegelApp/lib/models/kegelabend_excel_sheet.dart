@@ -22,8 +22,8 @@ class ExcelCreator {
     final String excelFileName = "$excelPath/Kegelabend.xlsx";
     final File excelFile = File(excelFileName);
     await excelFile.writeAsBytes(excelBytes, flush: true);
-    //sendEmail(excelFileName);
-    OpenFile.open(excelFileName);
+    sendEmail(excelFileName);
+    // OpenFile.open(excelFileName);
   }
 
   //create basic headers for the sheet

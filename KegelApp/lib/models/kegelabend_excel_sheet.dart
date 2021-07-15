@@ -48,6 +48,8 @@ class ExcelCreator {
 
     setPlayerstoExcel(excelSheet);
     setKingToExcel(excelSheet);
+    setSumOfAll(excelSheet);
+    setStrafenSchnitt(excelSheet);
   }
 
   //fill sheet with data from saved session
@@ -117,11 +119,49 @@ class ExcelCreator {
         .setText("Pumpenkönig:");
 
     excelSheet
-        .getRangeByName("B" + (sessionList.length + 3).toString())
+        .getRangeByName("C" + (sessionList.length + 3).toString())
         .setText(getKing());
     excelSheet
-        .getRangeByName("B" + (sessionList.length + 4).toString())
+        .getRangeByName("C" + (sessionList.length + 4).toString())
         .setText(getPumpenKing());
+  }
+
+  void setStrafenSchnitt(Worksheet excelSheet) {
+    excelSheet
+        .getRangeByName("A" + (sessionList.length + 6).toString())
+        .setText("Strafenschnitt");
+    excelSheet
+        .getRangeByName("C" + (sessionList.length + 6).toString())
+        .setNumber(getStrafenSchnitt());
+  }
+
+  double getStrafenSchnitt() {
+    double schnitt = 0;
+    double player = sessionList.length.toDouble();
+    double sum = 0;
+
+    sessionList.forEach((element) {
+      sum += element.kegelbruder.sumAll(element.kegelbruder);
+    });
+    schnitt = (sum / player);
+    return schnitt;
+  }
+
+  void setSumOfAll(Worksheet excelSheet) {
+    excelSheet
+        .getRangeByName("A" + (sessionList.length + 5).toString())
+        .setText("Strafen gesamt");
+    excelSheet
+        .getRangeByName("C" + (sessionList.length + 5).toString())
+        .setNumber(getSumOfAll());
+  }
+
+  double getSumOfAll() {
+    double sumOfAll = 0;
+    sessionList.forEach((session) {
+      sumOfAll += session.kegelbruder.sumAll(session.kegelbruder);
+    });
+    return sumOfAll;
   }
 
   String getKing() {

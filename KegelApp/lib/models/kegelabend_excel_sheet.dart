@@ -42,6 +42,9 @@ class ExcelCreator {
     excelSheet.getRangeByName("K1").setText("Kugel fallenlasse");
     excelSheet.getRangeByName("L1").setText("Alle Neune");
     excelSheet.getRangeByName("M1").setText("Strafen gesamt");
+    excelSheet.getRangeByName("N1").setText("Anwesend");
+    excelSheet.getRangeByName("O1").setText("Abwesend");
+    excelSheet.getRangeByName("P1").setText("Unabgemeldet");
 
     setPlayerstoExcel(excelSheet);
     setKingToExcel(excelSheet);
@@ -91,6 +94,15 @@ class ExcelCreator {
       excelSheet
           .getRangeByName("M" + (count + 2).toString())
           .setNumber(player.sumAll(player));
+      excelSheet
+          .getRangeByName("N" + (count + 2).toString())
+          .setNumber(player.anwesend.toDouble());
+      excelSheet
+          .getRangeByName("O" + (count + 2).toString())
+          .setNumber(player.abwesend.toDouble());
+      excelSheet
+          .getRangeByName("P" + (count + 2).toString())
+          .setNumber(player.unabgemeldet.toDouble());
 
       count += 1;
     }

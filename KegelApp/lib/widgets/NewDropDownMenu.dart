@@ -33,6 +33,12 @@ class _NewDropDownMenuState extends State<NewDropDownMenu> {
       future: DBProvider.db.getAllKegelbruder(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+          List<Kegelbruder> kegelbruderListe = [];
+          snapshot.data.forEach((element) {
+            if (element.anwesend == 1) {
+              kegelbruderListe.add(element);
+            }
+          });
           return Container(
             padding: EdgeInsets.all(2),
             width: 200,
@@ -48,7 +54,7 @@ class _NewDropDownMenuState extends State<NewDropDownMenu> {
                 ),
                 value: dropDownValue,
                 dropdownColor: Color.fromRGBO(16, 42, 67, 0.7),
-                items: snapshot.data
+                items: kegelbruderListe
                     .map(
                       (kb) => DropdownMenuItem<String>(
                         child: Text(

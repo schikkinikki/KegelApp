@@ -83,10 +83,10 @@ class _PresentDialogState extends State<PresentDialog> {
                           margin: EdgeInsets.all(5),
                           height: 60,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                width: 120,
+                                width: 100,
                                 child: Text(kegelbruderListe[index].name),
                               ),
                               Column(
@@ -160,6 +160,7 @@ class _PresentDialogState extends State<PresentDialog> {
                     children: [
                       FlatButton(
                           onPressed: () {
+                            Navigator.of(context).pop();
                             Navigator.of(context)
                                 .pushNamed(NewSessionScreen.routeName);
                           },

@@ -271,6 +271,7 @@ class Kegelbruder extends ChangeNotifier {
     double kugelFallenLassenGeld = kegelbruder.kugelFallenLassen * 1.0;
     double alleNeuneGeld = kegelbruder.alleNeune * 0.1;
     double pumpenKingGeld = kegelbruder.isPumpenKing * 5.0;
+    double unabgemeldetGeld = kegelbruder.unabgemeldet * 10.0;
 
     sum = pumpenGeld +
         klingelGeld +
@@ -283,7 +284,8 @@ class Kegelbruder extends ChangeNotifier {
         kugelKloGeld +
         kugelFallenLassenGeld +
         alleNeuneGeld +
-        pumpenKingGeld;
+        pumpenKingGeld +
+        unabgemeldetGeld;
 
     return sum;
   }

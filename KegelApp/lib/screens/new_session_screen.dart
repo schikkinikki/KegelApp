@@ -27,7 +27,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
     final List<String> strafenUiListe = [
       "Pumpe",
       "Klingeln",
-      "Stina",
+      "3 mittig",
       "Durchwurf",
       "Handy",
       "Kugel bringen",

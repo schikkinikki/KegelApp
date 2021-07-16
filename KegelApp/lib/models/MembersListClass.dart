@@ -69,7 +69,7 @@ class MemberListClass extends ChangeNotifier {
             await DBProvider.db.updateKegelbruder(kegelbruder);
             print("klingeln" + kegelbruder.klingeln.toString());
             break;
-          case "Stina":
+          case "3 mittig":
             kegelbruder.setMittenDurch(1);
             await DBProvider.db.updateKegelbruder(kegelbruder);
             print("stina" + kegelbruder.stina.toString());
@@ -144,7 +144,7 @@ class MemberListClass extends ChangeNotifier {
             await DBProvider.db.updateKegelbruder(kegelbruder);
             print("klingeln" + kegelbruder.klingeln.toString());
             break;
-          case "Stina":
+          case "3 mittig":
             kegelbruder.setMittenDurch(-1);
             await DBProvider.db.updateKegelbruder(kegelbruder);
             print("stina" + kegelbruder.stina.toString());
@@ -208,7 +208,7 @@ class MemberListClass extends ChangeNotifier {
       case "Klingeln":
         return selectedPlayer.klingel.toString();
         break;
-      case "Stina":
+      case "3 mittig":
         return selectedPlayer.mittenDurch.toString();
         break;
       case "Durchwurf":

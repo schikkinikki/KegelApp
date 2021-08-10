@@ -32,7 +32,7 @@ class ExcelCreator {
     excelSheet.getRangeByName("A1").setText("Name");
     excelSheet.getRangeByName("B1").setText("Pumpe");
     excelSheet.getRangeByName("C1").setText("Klingeln");
-    excelSheet.getRangeByName("D1").setText("Stina");
+    excelSheet.getRangeByName("D1").setText("3 mittig");
     excelSheet.getRangeByName("E1").setText("Durchwurf");
     excelSheet.getRangeByName("F1").setText("Handy");
     excelSheet.getRangeByName("G1").setText("Kugel bringen");

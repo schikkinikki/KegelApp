@@ -39,7 +39,7 @@ class _DataTableWidgetState extends State<DataTableWidget> {
             ),
             DataColumn(
               label: Text(
-                "Stina",
+                "3 mittig",
                 style: TextStyle(fontStyle: FontStyle.italic),
               ),
             ),

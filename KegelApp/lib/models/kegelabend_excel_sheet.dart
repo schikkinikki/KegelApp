@@ -22,8 +22,8 @@ class ExcelCreator {
     final String excelFileName = "$excelPath/Kegelabend.xlsx";
     final File excelFile = File(excelFileName);
     await excelFile.writeAsBytes(excelBytes, flush: true);
-    sendEmail(excelFileName);
-    // OpenFile.open(excelFileName);
+    // sendEmail(excelFileName);
+    OpenFile.open(excelFileName);
   }
 
   //create basic headers for the sheet
@@ -93,9 +93,15 @@ class ExcelCreator {
       excelSheet
           .getRangeByName("L" + (count + 2).toString())
           .setNumber(player.alleNeune.toDouble());
-      excelSheet
-          .getRangeByName("M" + (count + 2).toString())
-          .setNumber(player.sumAll(player));
+      if (player.anwesend == 1) {
+        excelSheet
+            .getRangeByName("M" + (count + 2).toString())
+            .setNumber(player.sumAll(player));
+      } else if (player.abwesend == 1) {
+        excelSheet
+            .getRangeByName("M" + (count + 2).toString())
+            .setNumber(getStrafenSchnitt());
+      }
       excelSheet
           .getRangeByName("N" + (count + 2).toString())
           .setNumber(player.anwesend.toDouble());

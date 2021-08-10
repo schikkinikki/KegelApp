@@ -1,11 +1,13 @@
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/session.dart';
+import 'package:KegelApp/screens/PresentSelectScreen.dart';
 import 'package:KegelApp/screens/games_screen.dart';
 import 'package:KegelApp/screens/my_club_screen.dart';
 import 'package:KegelApp/screens/new_session_screen.dart';
 import 'package:KegelApp/screens/old_session_detail_screen.dart';
 import 'package:KegelApp/screens/old_session_screen_v2.dart';
 import 'package:KegelApp/screens/sessions_screen.dart';
+import 'package:KegelApp/screens/settings_screen.dart';
 import 'package:KegelApp/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +35,9 @@ class KegelApp extends StatelessWidget {
           GamesScreen.routeName: (ctx) => GamesScreen(),
           NewSessionScreen.routeName: (ctx) => NewSessionScreen(),
           OldSessionScreenV2.routeName: (ctx) => OldSessionScreenV2(),
-          OldSessionDetailScreen.routeName: (ctx) => OldSessionDetailScreen()
+          OldSessionDetailScreen.routeName: (ctx) => OldSessionDetailScreen(),
+          PresentSelectScreen.routeName: (ctx) => PresentSelectScreen(),
+          SettingsScreen.routeName: (ctx) => SettingsScreen(),
         },
       ),
     );

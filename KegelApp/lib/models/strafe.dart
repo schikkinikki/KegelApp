@@ -1,0 +1,3 @@
+class Strafe {
+  double strafenHoehe;
+}

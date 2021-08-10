@@ -47,6 +47,9 @@ class MemberListClass extends ChangeNotifier {
     member.kugelFallenLassen = 0;
     member.alleNeune = 0;
     member.isSelected = 0;
+    member.anwesend = 0;
+    member.abwesend = 0;
+    member.unabgemeldet = 0;
   }
 
   // set Strafen for selected Player higher

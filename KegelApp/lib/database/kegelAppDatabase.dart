@@ -23,10 +23,16 @@ class DBProvider {
   initDB() async {
     return await openDatabase(join(await getDatabasesPath(), "kegelApp.db"),
         onCreate: (db, version) async {
+      //Table for kegelbruder
       await db.execute(
           '''CREATE TABLE kegelbruder(name TEXT PRIMARY KEY, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isSelected INTEGER, isKing INTEGER, isPumpenKing INTEGER, anwesend INTEGER, abwesend INTEGER, unabgemeldet INTEGER)''');
+
+      //Table for kegelbruder + date of kegelabend
       await db.execute(
           '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isKing INTEGER, isPumpenKing INTEGER, anwesend INTEGER, abwesend INTEGER, unabgemeldet INTEGER)''');
+
+      //Table for Strafenhöhe
+      await db.execute('''CREATE TABLE strafen(strafenhoehe DOUBLE)''');
     }, version: 1);
   }
 

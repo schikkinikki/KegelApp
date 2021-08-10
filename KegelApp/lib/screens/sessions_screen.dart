@@ -1,8 +1,8 @@
 import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
+import 'package:KegelApp/screens/PresentSelectScreen.dart';
 import 'package:KegelApp/screens/new_session_screen.dart';
 import 'package:KegelApp/screens/old_session_screen_v2.dart';
-import 'package:KegelApp/widgets/PresentSelectDialog.dart';
 import 'package:flutter/material.dart';
 
 class SessionScreen extends StatefulWidget {
@@ -22,8 +22,7 @@ class _SessionScreenState extends State<SessionScreen> {
 
     switch (screenRoute) {
       case NewSessionScreen.routeName:
-        showPresentDialog();
-        // Navigator.of(context).pushNamed(NewSessionScreen.routeName);
+        Navigator.of(context).pushNamed(PresentSelectScreen.routeName);
         break;
       case OldSessionScreenV2.routeName:
         Navigator.of(context).pushNamed(OldSessionScreenV2.routeName);
@@ -31,15 +30,6 @@ class _SessionScreenState extends State<SessionScreen> {
       default:
         break;
     }
-  }
-
-  void showPresentDialog() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return PresentDialog();
-      },
-    );
   }
 
   @override

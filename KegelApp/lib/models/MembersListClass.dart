@@ -112,6 +112,12 @@ class MemberListClass extends ChangeNotifier {
             break;
           case "Alle Neune":
             kegelbruderListe.forEach((element) async {
+              if (element.abwesend == 1) {
+                return;
+              }
+              if (element.unabgemeldet == 1) {
+                return;
+              }
               if (element.isSelected == 0) {
                 element.setAlleNeune(1);
                 await DBProvider.db.updateKegelbruder(element);

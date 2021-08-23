@@ -1,4 +1,5 @@
 import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
+import 'package:KegelApp/screens/settings_change_screens/strafen_edit_screen.dart';
 import 'package:KegelApp/screens/settings_change_screens/strafenhoehe_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -44,6 +45,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   color: color.blueContainer),
               child: Text(
                 "Strafenhöhe ändern",
+                style: TextStyle(fontSize: 20, color: color.greyText),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed(StrafenEditScreen.routeName);
+            },
+            child: Container(
+              margin: EdgeInsets.all(5),
+              padding: EdgeInsets.all(10),
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: color.blueContainer),
+              child: Text(
+                "Strafen hinzufügen/entfernen",
                 style: TextStyle(fontSize: 20, color: color.greyText),
                 textAlign: TextAlign.center,
               ),

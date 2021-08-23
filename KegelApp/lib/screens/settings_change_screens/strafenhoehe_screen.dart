@@ -2,7 +2,6 @@ import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/models/strafe.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 
 class StrafenhoeheScreen extends StatefulWidget {
   static const routeName = "/strafenhoehe-screen";

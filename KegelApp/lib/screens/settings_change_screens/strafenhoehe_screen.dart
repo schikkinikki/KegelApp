@@ -15,84 +15,126 @@ class _StrafenhoeheScreenState extends State<StrafenhoeheScreen> {
   KegelColor color = new KegelColor();
   double newStrafenValue;
 
+  void setStrafenValue(double newStrafenValue, String newStrafenName) async {
+    List<Strafe> updateStrafenList = await DBProvider.db.getAllStrafen();
+    updateStrafenList.forEach((strafe) async {
+      if (strafe.strafenName == newStrafenName) {
+        strafe.strafenHoehe = newStrafenValue;
+        await DBProvider.db.updateStrafe(strafe);
+      }
+    });
+  }
+
   void showChangeStrafenHoeheDialog(
       BuildContext mContext, double newStrafenValue, String newStrafenName) {
     showBottomSheet(
       context: mContext,
       builder: (context) {
-        return Container(
-          height: 300,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Neuen Wert für " + newStrafenName + " eingeben:",
-                style: TextStyle(fontSize: 18),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        return StatefulBuilder(
+          builder: (context, setBottomSheetState) {
+            return Container(
+              height: 300,
+              child: Column(
                 children: [
-                  Column(
-                    children: [
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100)),
-                        onPressed: () {},
-                        child: Text("-0,1"),
-                      ),
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100)),
-                        onPressed: () {},
-                        child: Text("-0,5"),
-                      ),
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100)),
-                        onPressed: () {},
-                        child: Text("-1,0"),
-                      ),
-                    ],
+                  SizedBox(
+                    height: 10,
                   ),
                   Text(
-                    newStrafenValue.toString(),
-                    style: TextStyle(fontSize: 20),
+                    "Neuen Wert für " + newStrafenName + " eingeben:",
+                    style: TextStyle(fontSize: 18),
                   ),
-                  Column(
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100)),
-                        onPressed: () {},
-                        child: Text("+0,1"),
+                      Column(
+                        children: [
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100)),
+                            onPressed: () {
+                              setBottomSheetState(() {
+                                newStrafenValue -= 0.1;
+                                print(newStrafenValue);
+                              });
+                            },
+                            child: Text("-0,1"),
+                          ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100)),
+                            onPressed: () {
+                              setBottomSheetState(() {
+                                newStrafenValue -= 0.5;
+                              });
+                            },
+                            child: Text("-0,5"),
+                          ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100)),
+                            onPressed: () {
+                              setBottomSheetState(() {
+                                newStrafenValue -= 1.0;
+                              });
+                            },
+                            child: Text("-1,0"),
+                          ),
+                        ],
                       ),
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100)),
-                        onPressed: () {},
-                        child: Text("+0,5"),
+                      Text(
+                        newStrafenValue.toStringAsFixed(2),
+                        style: TextStyle(fontSize: 20),
                       ),
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100)),
-                        onPressed: () {},
-                        child: Text("+1,0"),
+                      Column(
+                        children: [
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100)),
+                            onPressed: () {
+                              setBottomSheetState(() {
+                                newStrafenValue += 0.1;
+                              });
+                            },
+                            child: Text("+0,1"),
+                          ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100)),
+                            onPressed: () {
+                              setBottomSheetState(() {
+                                newStrafenValue += 0.5;
+                              });
+                            },
+                            child: Text("+0,5"),
+                          ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100)),
+                            onPressed: () {
+                              setBottomSheetState(() {
+                                newStrafenValue += 1.0;
+                              });
+                            },
+                            child: Text("+1,0"),
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  RaisedButton(
+                    onPressed: () {
+                      setStrafenValue(newStrafenValue, newStrafenName);
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("Okay"),
+                  )
                 ],
               ),
-              RaisedButton(
-                onPressed: () {},
-                child: Text("Okay"),
-              )
-            ],
-          ),
+            );
+          },
         );
       },
     );

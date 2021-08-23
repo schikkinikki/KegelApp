@@ -1,6 +1,5 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'kegelbruder.dart';
 import 'package:flutter/foundation.dart';
 

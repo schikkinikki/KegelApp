@@ -1,5 +1,6 @@
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
+import 'package:KegelApp/models/strafe.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -31,8 +32,9 @@ class DBProvider {
       await db.execute(
           '''CREATE TABLE session(date TEXT, name TEXT, pumpe INTEGER, klingeln INTEGER, stina INTEGER, durchwurf INTEGER, handy INTEGER, kugelbringen INTEGER, lustwurf INTEGER, zweiPersonenAufDerBahn INTEGER, kugelKlo INTEGER, kugelFallenLassen INTEGER, alleNeune INTEGER, isKing INTEGER, isPumpenKing INTEGER, anwesend INTEGER, abwesend INTEGER, unabgemeldet INTEGER)''');
 
-      //Table for Strafenhöhe
-      await db.execute('''CREATE TABLE strafen(strafenhoehe DOUBLE)''');
+      //Table for Strafen
+      await db.execute(
+          '''CREATE TABLE strafen(strafenName TEXT, strafenHoehe DOUBLE)''');
     }, version: 1);
   }
 
@@ -47,6 +49,13 @@ class DBProvider {
   addSession(Session newSession) async {
     final db = await database;
     var res = await db.insert("session", newSession.toMap());
+    return res;
+  }
+
+  //adding a new entry to strafen table
+  addStrafe(Strafe newStrafe) async {
+    final db = await database;
+    var res = await db.insert("strafen", newStrafe.toMap());
     return res;
   }
 
@@ -83,10 +92,25 @@ class DBProvider {
     return list;
   }
 
+  //getting all entrys from strafen table
+  Future<List<Strafe>> getAllStrafen() async {
+    final db = await database;
+    var res = await db.query("strafen");
+    List<Strafe> list =
+        res.isNotEmpty ? res.map((e) => Strafe.fromMap(e)).toList() : [];
+    return list;
+  }
+
   //delete a entry from kegelbruder table
   deleteKegelbruder(String name) async {
     final db = await database;
     await db.delete("kegelbruder", where: "name = ?", whereArgs: [name]);
+  }
+
+  //delete a entry from strafen table
+  deleteStrafe(String name) async {
+    final db = await database;
+    await db.delete("strafen", where: "strafenName = ?", whereArgs: [name]);
   }
 
   //update a entry from kegelbruder table
@@ -113,6 +137,16 @@ class DBProvider {
         isSelected: kegelbruder.isSelected);
     var res = await db.update("kegelbruder", updateBruder.toMap(),
         where: "name = ?", whereArgs: [kegelbruder.name]);
+    return res;
+  }
+
+  //update a entry from strafen table
+  updateStrafe(Strafe strafe) async {
+    final db = await database;
+    Strafe updateStrafe = Strafe(
+        strafenHoehe: strafe.strafenHoehe, strafenName: strafe.strafenName);
+    var res = await db.update("strafen", updateStrafe.toMap(),
+        where: "strafenName = ?", whereArgs: [strafe.strafenName]);
     return res;
   }
 }

@@ -3,6 +3,7 @@ import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
+import 'package:KegelApp/models/strafe.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -71,8 +72,18 @@ class _MyClubScreenState extends State<MyClubScreen> {
         });
   }
 
+  //create initial Strafentable
+  void createStrafenTabelle() async {
+    Strafe newStrafe = new Strafe();
+    List<Strafe> initialData = newStrafe.getIntitialData();
+    initialData.forEach((strafe) async {
+      await DBProvider.db.addStrafe(strafe);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    createStrafenTabelle();
     return Column(
       children: [
         FutureBuilder<List<Kegelbruder>>(

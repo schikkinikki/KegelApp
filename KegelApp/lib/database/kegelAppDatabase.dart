@@ -35,6 +35,9 @@ class DBProvider {
       //Table for Strafen
       await db.execute(
           '''CREATE TABLE strafen(strafenName TEXT, strafenHoehe DOUBLE)''');
+
+      await db.rawInsert(
+          '''INSERT INTO strafen (strafenName, strafenHoehe) VALUES ("Pumpe", 0.1), ("Klingeln", 0.1), ("3 mittig", 0.2), ("Durchwurf", 0.5), ("Handy", 5.0), ("Kugel bringen", 1.0),("Zu 2. auf der Bahn", 1.0), ("Lustwurf", 0.5), ("Kugel zum Klo", 2.5), ("Kugel fallenlassen", 1.0), ("Alle Neune", 0.1)''');
     }, version: 1);
   }
 

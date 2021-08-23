@@ -40,7 +40,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               height: 50,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                  border: Border.all(color: color.greyText),
                   borderRadius: BorderRadius.circular(10),
                   color: color.blueContainer),
               child: Text(

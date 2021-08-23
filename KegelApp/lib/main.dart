@@ -7,6 +7,7 @@ import 'package:KegelApp/screens/new_session_screen.dart';
 import 'package:KegelApp/screens/old_session_detail_screen.dart';
 import 'package:KegelApp/screens/old_session_screen_v2.dart';
 import 'package:KegelApp/screens/sessions_screen.dart';
+import 'package:KegelApp/screens/settings_change_screens/strafenhoehe_screen.dart';
 import 'package:KegelApp/screens/settings_screen.dart';
 import 'package:KegelApp/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,7 @@ class KegelApp extends StatelessWidget {
           OldSessionDetailScreen.routeName: (ctx) => OldSessionDetailScreen(),
           PresentSelectScreen.routeName: (ctx) => PresentSelectScreen(),
           SettingsScreen.routeName: (ctx) => SettingsScreen(),
+          StrafenhoeheScreen.routeName: (ctx) => StrafenhoeheScreen(),
         },
       ),
     );

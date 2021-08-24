@@ -26,7 +26,7 @@ class _StrafenhoeheScreenState extends State<StrafenhoeheScreen> {
 
   void showChangeStrafenHoeheDialog(
       BuildContext mContext, double newStrafenValue, String newStrafenName) {
-    showBottomSheet(
+    showModalBottomSheet(
       context: mContext,
       builder: (context) {
         return StatefulBuilder(

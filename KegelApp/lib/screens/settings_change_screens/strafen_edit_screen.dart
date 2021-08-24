@@ -20,6 +20,16 @@ class _StrafenEditScreenState extends State<StrafenEditScreen> {
     myController.dispose();
   }
 
+  void setNewStrafenName(String newStrafeName, String oldStrafeName) async {
+    List<Strafe> strafenChangesListe = await DBProvider.db.getAllStrafen();
+    strafenChangesListe.forEach((strafe) async {
+      if (strafe.strafenName == oldStrafeName) {
+        strafe.strafenName = newStrafeName;
+        await DBProvider.db.updateStrafe(strafe);
+      }
+    });
+  }
+
   void showEditDialog(BuildContext mContext, String newStrafenName) {
     showModalBottomSheet(
       context: mContext,
@@ -40,8 +50,30 @@ class _StrafenEditScreenState extends State<StrafenEditScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  TextField(
-                    controller: myController,
+                  Container(
+                    margin: EdgeInsets.all(3),
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: TextField(
+                      controller: myController,
+                      decoration: InputDecoration(
+                        hintText: newStrafenName,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  RaisedButton(
+                    child: Text("Okay"),
+                    onPressed: () {
+                      String newName = myController.text;
+                      setNewStrafenName(newName, newStrafenName);
+                      myController.clear();
+                      setState(() {});
+                      Navigator.of(context).pop();
+                    },
                   ),
                 ],
               ),
@@ -100,6 +132,7 @@ class _StrafenEditScreenState extends State<StrafenEditScreen> {
                               onPressed: () {
                                 showEditDialog(
                                     context, strafenListe[index].strafenName);
+                                setState(() {});
                               })
                         ],
                       ),

@@ -125,7 +125,9 @@ class _StrafenhoeheScreenState extends State<StrafenhoeheScreen> {
                   ),
                   RaisedButton(
                     onPressed: () {
-                      setStrafenValue(newStrafenValue, newStrafenName);
+                      setState(() {
+                        setStrafenValue(newStrafenValue, newStrafenName);
+                      });
                       Navigator.of(context).pop();
                     },
                     child: Text("Okay"),

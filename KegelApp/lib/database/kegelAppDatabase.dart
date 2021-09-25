@@ -34,10 +34,10 @@ class DBProvider {
 
       //Table for Strafen
       await db.execute(
-          '''CREATE TABLE strafen(strafenName TEXT, strafenHoehe DOUBLE)''');
+          '''CREATE TABLE strafen(strafenIndex INTEGER, strafenName TEXT, strafenHoehe DOUBLE)''');
 
       await db.rawInsert(
-          '''INSERT INTO strafen (strafenName, strafenHoehe) VALUES ("Pumpe", 0.1), ("Klingeln", 0.1), ("3 mittig", 0.2), ("Durchwurf", 0.5), ("Handy", 5.0), ("Kugel bringen", 1.0),("Zu 2. auf der Bahn", 1.0), ("Lustwurf", 0.5), ("Kugel zum Klo", 2.5), ("Kugel fallenlassen", 1.0), ("Alle Neune", 0.1)''');
+          '''INSERT INTO strafen (strafenIndex, strafenName, strafenHoehe) VALUES (1, "Pumpe", 0.1), (2, "Klingeln", 0.1), (3, "3 mittig", 0.2), (4, "Durchwurf", 0.5), (5, "Handy", 5.0), (6, "Kugel bringen", 1.0),(7, "Zu 2. auf der Bahn", 1.0), (8, "Lustwurf", 0.5), (9, "Kugel zum Klo", 2.5), (10, "Kugel fallenlassen", 1.0), (11, "Alle Neune", 0.1)''');
     }, version: 1);
   }
 
@@ -147,9 +147,11 @@ class DBProvider {
   updateStrafe(Strafe strafe) async {
     final db = await database;
     Strafe updateStrafe = Strafe(
-        strafenHoehe: strafe.strafenHoehe, strafenName: strafe.strafenName);
+        index: strafe.index,
+        strafenHoehe: strafe.strafenHoehe,
+        strafenName: strafe.strafenName);
     var res = await db.update("strafen", updateStrafe.toMap(),
-        where: "strafenName = ?", whereArgs: [strafe.strafenName]);
+        where: "strafenIndex", whereArgs: [strafe.index]);
     return res;
   }
 }

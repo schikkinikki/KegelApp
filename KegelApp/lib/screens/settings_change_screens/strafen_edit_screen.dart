@@ -20,17 +20,18 @@ class _StrafenEditScreenState extends State<StrafenEditScreen> {
     myController.dispose();
   }
 
-  void setNewStrafenName(String newStrafeName, String oldStrafeName) async {
+  void setNewStrafenName(String newStrafeName, int strafenIndex) async {
     List<Strafe> strafenChangesListe = await DBProvider.db.getAllStrafen();
     strafenChangesListe.forEach((strafe) async {
-      if (strafe.strafenName == oldStrafeName) {
+      if (strafe.index == strafenIndex) {
         strafe.strafenName = newStrafeName;
         await DBProvider.db.updateStrafe(strafe);
       }
     });
   }
 
-  void showEditDialog(BuildContext mContext, String newStrafenName) {
+  void showEditDialog(
+      BuildContext mContext, String newStrafenName, int strafenIndex) {
     showModalBottomSheet(
       context: mContext,
       builder: (context) {
@@ -69,7 +70,7 @@ class _StrafenEditScreenState extends State<StrafenEditScreen> {
                     child: Text("Okay"),
                     onPressed: () {
                       String newName = myController.text;
-                      setNewStrafenName(newName, newStrafenName);
+                      setNewStrafenName(newName, strafenIndex);
                       myController.clear();
                       setState(() {});
                       Navigator.of(context).pop();
@@ -89,7 +90,7 @@ class _StrafenEditScreenState extends State<StrafenEditScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Strafenhöhe ändern",
+          "Strafen ändern",
           style: TextStyle(
               fontWeight: FontWeight.bold, fontSize: 25, color: color.greyText),
         ),
@@ -131,7 +132,9 @@ class _StrafenEditScreenState extends State<StrafenEditScreen> {
                               ),
                               onPressed: () {
                                 showEditDialog(
-                                    context, strafenListe[index].strafenName);
+                                    context,
+                                    strafenListe[index].strafenName,
+                                    strafenListe[index].index);
                                 setState(() {});
                               })
                         ],

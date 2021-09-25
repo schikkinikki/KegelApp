@@ -187,19 +187,12 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                         children: [
                           IconButton(
                               icon: Icon(
-                                Icons.add_circle,
+                                Icons.remove_circle,
                                 color: color.greyText,
                               ),
                               onPressed: () {
                                 setState(() {
-                                  if (strafenUiListe[index] == "Alle Neune") {
-                                    Fluttertoast.showToast(
-                                        msg:
-                                            "Alle Neune wurde für die andere Spieler hinzugefügt",
-                                        gravity: ToastGravity.BOTTOM,
-                                        toastLength: Toast.LENGTH_SHORT);
-                                  }
-                                  memberData.setStrafen(
+                                  memberData.setStrafenLower(
                                       index, strafenUiListe[index]);
                                 });
                               }),
@@ -230,15 +223,22 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                           ),
                           IconButton(
                               icon: Icon(
-                                Icons.remove_circle,
+                                Icons.add_circle,
                                 color: color.greyText,
                               ),
                               onPressed: () {
                                 setState(() {
-                                  memberData.setStrafenLower(
+                                  if (strafenUiListe[index] == "Alle Neune") {
+                                    Fluttertoast.showToast(
+                                        msg:
+                                            "Alle Neune wurde für die andere Spieler hinzugefügt",
+                                        gravity: ToastGravity.BOTTOM,
+                                        toastLength: Toast.LENGTH_SHORT);
+                                  }
+                                  memberData.setStrafen(
                                       index, strafenUiListe[index]);
                                 });
-                              })
+                              }),
                         ],
                       ),
                     ),

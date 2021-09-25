@@ -1,3 +1,0 @@
-class Strafe {
-  double strafenHoehe;
-}

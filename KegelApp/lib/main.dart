@@ -1,3 +1,4 @@
+import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/session.dart';
 import 'package:KegelApp/screens/PresentSelectScreen.dart';
@@ -10,6 +11,7 @@ import 'package:KegelApp/screens/sessions_screen.dart';
 import 'package:KegelApp/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 import 'models/kegelbruder.dart';
 
@@ -18,6 +20,7 @@ void main() {
 }
 
 class KegelApp extends StatelessWidget {
+  KegelColor color = new KegelColor();
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -27,7 +30,13 @@ class KegelApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SessionProvider()),
       ],
       child: MaterialApp(
-        home: TabsScreen(),
+        home: AnimatedSplashScreen(
+            splash: Image.asset("launcher_assets/KegelLogo.png"),
+            centered: true,
+            backgroundColor: color.darkBackground,
+            splashTransition: SplashTransition.fadeTransition,
+            splashIconSize: 200,
+            nextScreen: TabsScreen()),
         routes: {
           MyClubScreen.routeName: (ctx) => MyClubScreen(),
           SessionScreen.routeName: (ctx) => SessionScreen(),

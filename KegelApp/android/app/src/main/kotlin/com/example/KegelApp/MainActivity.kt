@@ -1,4 +1,4 @@
-package com.example.KegelApp
+package com.niklas.kunk.KegelApp
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -6,6 +6,7 @@ import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
 import 'package:KegelApp/widgets/KingSelectDialog.dart';
 import 'package:KegelApp/widgets/NewDropDownMenu.dart';
+import 'package:KegelApp/widgets/SessionOverviewDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -114,10 +115,29 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
       );
     }
 
+    void showSessionOverviewDialog() {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return SessionOverviewDialog(
+            strafenListe: strafenUiListe,
+          );
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: color.darkBackground,
         actions: [
+          IconButton(
+              icon: Icon(Icons.leaderboard),
+              onPressed: () {
+                showSessionOverviewDialog();
+              }),
+          SizedBox(
+            width: 5,
+          ),
           PopupMenuButton(
             onSelected: (value) {
               if (value == 1) {
@@ -145,7 +165,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
               ),
             ],
             icon: Icon(Icons.more_vert),
-          )
+          ),
         ],
         title: Text(
           "Kegelabend",

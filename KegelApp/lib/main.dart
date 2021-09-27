@@ -1,4 +1,3 @@
-import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/session.dart';
 import 'package:KegelApp/screens/PresentSelectScreen.dart';
@@ -19,7 +18,6 @@ void main() {
 }
 
 class KegelApp extends StatelessWidget {
-  KegelColor color = new KegelColor();
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

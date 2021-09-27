@@ -11,7 +11,6 @@ import 'package:KegelApp/screens/sessions_screen.dart';
 import 'package:KegelApp/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 import 'models/kegelbruder.dart';
 
@@ -30,13 +29,7 @@ class KegelApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SessionProvider()),
       ],
       child: MaterialApp(
-        home: AnimatedSplashScreen(
-            splash: Image.asset("launcher_assets/KegelLogo.png"),
-            centered: true,
-            backgroundColor: color.darkBackground,
-            splashTransition: SplashTransition.fadeTransition,
-            splashIconSize: 200,
-            nextScreen: TabsScreen()),
+        home: TabsScreen(),
         routes: {
           MyClubScreen.routeName: (ctx) => MyClubScreen(),
           SessionScreen.routeName: (ctx) => SessionScreen(),

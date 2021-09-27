@@ -44,7 +44,6 @@ dependencies:
 
   shared_preferences: ^0.5.12+4
   
-  animated_splash_screen: ^1.0.1+2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -58,9 +57,9 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "launcher_assets/KegelLogo.png"
+  image_path: "launcher_assets/logo_size_invert.jpg"
   adaptive_icon_background: "#143787"
-  adaptive_icon_foreground: "launcher_assets/KegelLogo.png"
+  adaptive_icon_foreground: "launcher_assets/logo_size_invert.jpg"
   
 
 # For information on the generic Dart part of this file, see the

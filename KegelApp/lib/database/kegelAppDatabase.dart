@@ -67,7 +67,7 @@ class DBProvider {
     final db = await database;
     var res = await db.query("kegelbruder");
     List<Kegelbruder> list =
-        res.isNotEmpty ? res.map((e) => Kegelbruder.fromMap(e)).toList() : [];
+        res.isNotEmpty ? res.map((e) => Kegelbruder.fromMap(e)).toList() : null;
     return list;
   }
 
@@ -76,7 +76,7 @@ class DBProvider {
     final db = await database;
     var res = await db.query("session");
     List<Session> list =
-        res.isNotEmpty ? res.map((e) => Session.fromMap(e)).toList() : [];
+        res.isNotEmpty ? res.map((e) => Session.fromMap(e)).toList() : null;
     return list;
   }
 

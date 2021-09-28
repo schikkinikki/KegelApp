@@ -140,13 +140,28 @@ class _PresentSelectScreenState extends State<PresentSelectScreen> {
             child: FutureBuilder(
               future: DBProvider.db.getAllKegelbruder(),
               builder: (context, snapshot) {
+                List<Kegelbruder> kegelbruderListe = snapshot.data;
                 if (!snapshot.hasData) {
                   return Center(
-                    child: Text("Noch keine Kegelbrüder hinzugefügt"),
-                  );
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.sentiment_dissatisfied,
+                        color: color.greyText,
+                        size: 40,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        "Noch keine Mitglieder hinzugefügt.",
+                        style: TextStyle(color: color.greyText, fontSize: 18),
+                      )
+                    ],
+                  ));
                 }
                 if (snapshot.hasData) {
-                  List<Kegelbruder> kegelbruderListe = snapshot.data;
                   fillAnwesendCheck(kegelbruderListe);
                   fillAbwesendCheck(kegelbruderListe);
                   fillUnabgemeldetCheck(kegelbruderListe);
@@ -155,11 +170,12 @@ class _PresentSelectScreenState extends State<PresentSelectScreen> {
                     itemBuilder: (context, index) {
                       return Container(
                         margin: EdgeInsets.all(7),
+                        padding: EdgeInsets.only(left: 5, right: 5),
                         height: 60,
                         child: Row(
                           children: [
                             Container(
-                              width: 130,
+                              width: 150,
                               child: Text(
                                 kegelbruderListe[index].name,
                                 style: TextStyle(color: color.greyText),

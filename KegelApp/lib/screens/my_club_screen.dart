@@ -124,8 +124,20 @@ class _MyClubScreenState extends State<MyClubScreen> {
                     itemCount: snapshot.data.length),
               );
             } else {
-              return Center(
-                child: Text(strings.myclubscreen_no_player),
+              return Container(
+                height: MediaQuery.of(context).size.height * 0.65 - 5,
+                padding: EdgeInsets.all(10),
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      strings.myclubscreen_no_player,
+                      style: TextStyle(color: color.greyText, fontSize: 18),
+                    )
+                  ],
+                ),
               );
             }
           },

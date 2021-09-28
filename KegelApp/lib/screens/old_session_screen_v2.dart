@@ -99,7 +99,10 @@ class _OldSessionScreenV2State extends State<OldSessionScreenV2> {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
-              child: Text("Noch keine Kegelabende gespielt!"),
+              child: Text(
+                "Noch keine Kegelabende gespielt!",
+                style: TextStyle(fontSize: 18, color: color.greyText),
+              ),
             );
           }
           if (snapshot.hasData) {

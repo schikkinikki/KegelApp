@@ -1,5 +1,4 @@
 import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
-import 'package:KegelApp/screens/games_screen.dart';
 import 'package:KegelApp/screens/my_club_screen.dart';
 import 'package:KegelApp/screens/sessions_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   KegelColor color = new KegelColor();
   //Pages for the different bottom nav buttons
-  final List<Widget> _pages = [MyClubScreen(), SessionScreen(), GamesScreen()];
+  final List<Widget> _pages = [MyClubScreen(), SessionScreen()];
   int _selectedPageIndex = 0;
 
   //select Pages by index
@@ -59,11 +58,6 @@ class _TabsScreenState extends State<TabsScreen> {
               icon: Icon(Icons.sports_bar),
               label: "Kegelabend",
             ),
-            //Maybe in future add feature to play simple games in app
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.sports_esports),
-            //   label: "Spiele",
-            // ),
           ],
         ),
       ),

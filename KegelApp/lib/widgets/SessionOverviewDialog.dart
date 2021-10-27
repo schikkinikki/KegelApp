@@ -51,24 +51,12 @@ class _SessionOverviewDialogState extends State<SessionOverviewDialog> {
           left: 5,
           right: 5,
         ),
-        height: 600,
+        height: 550,
         width: 350,
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.cancel),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  iconSize: 28,
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
                   icon: Icon(Icons.arrow_back_ios),
@@ -95,6 +83,16 @@ class _SessionOverviewDialogState extends State<SessionOverviewDialog> {
                   },
                   key: Key(forwardButtonKey),
                 ),
+                SizedBox(
+                  width: 30,
+                ),
+                IconButton(
+                  icon: Icon(Icons.cancel),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  iconSize: 28,
+                )
               ],
             ),
             Container(

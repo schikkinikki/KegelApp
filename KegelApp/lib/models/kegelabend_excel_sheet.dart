@@ -1,6 +1,5 @@
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
-import 'package:open_file/open_file.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -22,8 +21,7 @@ class ExcelCreator {
     final String excelFileName = "$excelPath/Kegelabend.xlsx";
     final File excelFile = File(excelFileName);
     await excelFile.writeAsBytes(excelBytes, flush: true);
-    // sendEmail(excelFileName);
-    OpenFile.open(excelFileName);
+    sendEmail(excelFileName);
   }
 
   //create basic headers for the sheet

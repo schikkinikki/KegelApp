@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, missing_return
+
 import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
@@ -208,7 +210,7 @@ class _PresentSelectScreenState extends State<PresentSelectScreen> {
                               ],
                             ),
                             SizedBox(
-                              width: 15,
+                              width: 12,
                             ),
                             Column(
                               children: [
@@ -235,7 +237,7 @@ class _PresentSelectScreenState extends State<PresentSelectScreen> {
                               ],
                             ),
                             SizedBox(
-                              width: 15,
+                              width: 12,
                             ),
                             Column(
                               children: [

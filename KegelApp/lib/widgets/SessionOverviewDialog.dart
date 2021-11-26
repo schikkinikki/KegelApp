@@ -115,10 +115,13 @@ class _SessionOverviewDialogState extends State<SessionOverviewDialog> {
                   return ListView.builder(
                     itemCount: kegelbruderListe.length,
                     itemBuilder: (context, index) {
+                      var sortedList =
+                          memberListClass.sortListeforScreenOverview(
+                              displayedText, kegelbruderListe);
                       return Container(
                         padding: EdgeInsets.only(left: 5, top: 10),
-                        child: memberListClass.createBars(displayedText,
-                            kegelbruderListe, kegelbruderListe[index]),
+                        child: memberListClass.createBars(
+                            displayedText, sortedList, kegelbruderListe[index]),
                       );
                     },
                   );

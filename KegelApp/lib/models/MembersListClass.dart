@@ -501,4 +501,68 @@ class MemberListClass extends ChangeNotifier {
       );
     }
   }
+
+  //sort kegelbruderListe
+  List<Kegelbruder> sortListeforScreenOverview(
+      String strafe, List<Kegelbruder> kegelbruderListe) {
+    switch (strafe) {
+      case "Pumpe":
+        kegelbruderListe.sort((b, a) => a.pumpe.compareTo(b.pumpe));
+        return kegelbruderListe;
+        break;
+
+      case "Klingeln":
+        kegelbruderListe.sort((b, a) => a.klingeln.compareTo(b.klingeln));
+        return kegelbruderListe;
+        break;
+
+      case "3 mittig":
+        kegelbruderListe.sort((b, a) => a.stina.compareTo(b.stina));
+        return kegelbruderListe;
+        break;
+
+      case "Durchwurf":
+        kegelbruderListe.sort((b, a) => a.durchwurf.compareTo(b.durchwurf));
+        return kegelbruderListe;
+        break;
+
+      case "Handy":
+        kegelbruderListe.sort((b, a) => a.handy.compareTo(b.handy));
+        return kegelbruderListe;
+        break;
+
+      case "Kugel bringen":
+        kegelbruderListe
+            .sort((b, a) => a.kugelBringen.compareTo(b.kugelBringen));
+        return kegelbruderListe;
+        break;
+
+      case "Zu 2. auf der Bahn":
+        kegelbruderListe
+            .sort((b, a) => a.zuZweitaufDerBahn.compareTo(b.zuZweitaufDerBahn));
+        return kegelbruderListe;
+        break;
+
+      case "Lustwurf":
+        kegelbruderListe.sort((b, a) => a.lustwurf.compareTo(b.lustwurf));
+        return kegelbruderListe;
+        break;
+
+      case "Kugel zum Klo":
+        kegelbruderListe.sort((b, a) => a.kugelKlo.compareTo(b.kugelKlo));
+        return kegelbruderListe;
+        break;
+
+      case "Kugel fallenlassen":
+        kegelbruderListe
+            .sort((b, a) => a.kugelFallenLassen.compareTo(b.kugelFallenLassen));
+        return kegelbruderListe;
+        break;
+
+      case "Alle Neune":
+        kegelbruderListe.sort((b, a) => a.alleNeune.compareTo(b.alleNeune));
+        return kegelbruderListe;
+        break;
+    }
+  }
 }

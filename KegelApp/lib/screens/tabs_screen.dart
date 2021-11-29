@@ -12,7 +12,7 @@ class _TabsScreenState extends State<TabsScreen> {
   KegelColor color = new KegelColor();
   //Pages for the different bottom nav buttons
   final List<Widget> _pages = [MyClubScreen(), SessionScreen()];
-  int _selectedPageIndex = 0;
+  int _selectedPageIndex = 1;
 
   //select Pages by index
   void _selectPage(int index) {

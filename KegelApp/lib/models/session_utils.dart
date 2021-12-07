@@ -4,19 +4,36 @@ import 'package:KegelApp/models/session.dart';
 class SessionUtils {
   Future<List<Session>> returnLastSession() async {
     List<Session> allSessions = await DBProvider.db.getAllSessions();
+    double comparator = double.parse(allSessions[0].date.replaceAll("-", ""));
+    print(comparator);
+    List<Session> sortedList = [];
 
     //sort list from newest to latest
-    allSessions.sort((b, a) => a.date.compareTo(b.date));
-    List<Session> latestSession = [];
-
-    //add all session data that matches the newest date to new list and return it
     allSessions.forEach((session) {
-      if (session.date.contains(allSessions[0].date)) {
-        latestSession.add(session);
+      session.date = session.date.replaceAll("-", "");
+      double dateDouble = double.parse(session.date);
+      if (comparator - dateDouble < 0) {
+        comparator = dateDouble;
+      }
+      print("ist in der gesamten Liste: " +
+          session.date +
+          " " +
+          session.kegelbruder.name);
+    });
+
+    allSessions.forEach((session) {
+      double dateDoubleZwei = double.parse(session.date);
+      if (dateDoubleZwei - comparator == 0.0) {
+        sortedList.add(session);
       }
     });
 
-    return latestSession;
+    print("Neuer Vergleich: " + comparator.toString());
+    sortedList.forEach((element) {
+      print(element.date + " " + element.kegelbruder.name);
+    });
+
+    return sortedList;
   }
 
   String returnPumpenkoenig(List<Session> sessionList) {

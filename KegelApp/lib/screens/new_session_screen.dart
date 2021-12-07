@@ -4,6 +4,7 @@ import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
+import 'package:KegelApp/screens/sessions_screen.dart';
 import 'package:KegelApp/widgets/KingSelectDialog.dart';
 import 'package:KegelApp/widgets/NewDropDownMenu.dart';
 import 'package:KegelApp/widgets/SessionOverviewDialog.dart';
@@ -40,14 +41,13 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
     ];
 
     void saveAndResetSession() async {
-      var date = DateFormat.yMd();
+      var date = DateFormat("dd-MM-yyyy");
       var dateString = date.format(DateTime.now());
 
       List<Kegelbruder> list = await DBProvider.db.getAllKegelbruder();
       list.forEach((member) async {
         var session = new Session(date: dateString, kegelbruder: member);
         await DBProvider.db.addSession(session);
-        print("session with " + member.name + "was added");
       });
     }
 

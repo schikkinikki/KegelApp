@@ -17,6 +17,7 @@ void main() {
 }
 
 class KegelApp extends StatelessWidget {
+  static const sessionActiveKey = "IS_SESSION_ACTIVE";
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

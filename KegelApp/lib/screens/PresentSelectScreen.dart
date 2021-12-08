@@ -2,9 +2,11 @@
 
 import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
+import 'package:KegelApp/main.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/screens/new_session_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PresentSelectScreen extends StatefulWidget {
   static const routeName = "/present-select-screen";
@@ -15,10 +17,16 @@ class PresentSelectScreen extends StatefulWidget {
 
 class _PresentSelectScreenState extends State<PresentSelectScreen> {
   KegelColor color = new KegelColor();
+  Future<SharedPreferences> sharedPrefs = SharedPreferences.getInstance();
 
   List<int> anwesendCheck = [];
   List<int> abwesendCheck = [];
   List<int> unabgemeldetCheck = [];
+
+  void setSessionActive() async {
+    SharedPreferences preferences = await sharedPrefs;
+    preferences.setBool(KegelApp.sessionActiveKey, true);
+  }
 
   void fillAnwesendCheck(List<Kegelbruder> kegelbruderListe) {
     kegelbruderListe.forEach((element) {
@@ -275,6 +283,7 @@ class _PresentSelectScreenState extends State<PresentSelectScreen> {
             children: [
               FlatButton(
                   onPressed: () {
+                    setSessionActive();
                     Navigator.of(context).pop();
                     Navigator.of(context).pushNamed(NewSessionScreen.routeName);
                   },

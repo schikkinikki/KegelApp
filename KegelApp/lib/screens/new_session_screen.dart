@@ -1,10 +1,10 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/kegelapp_res/kegel_strings.dart';
+import 'package:KegelApp/main.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
-import 'package:KegelApp/screens/sessions_screen.dart';
 import 'package:KegelApp/widgets/KingSelectDialog.dart';
 import 'package:KegelApp/widgets/NewDropDownMenu.dart';
 import 'package:KegelApp/widgets/SessionOverviewDialog.dart';
@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NewSessionScreen extends StatefulWidget {
   static const routeName = "/new-session-screen";
@@ -21,6 +22,13 @@ class NewSessionScreen extends StatefulWidget {
 }
 
 class _NewSessionScreenState extends State<NewSessionScreen> {
+  Future<SharedPreferences> sharedPrefs = SharedPreferences.getInstance();
+
+  void setSessionUnactive() async {
+    SharedPreferences preferences = await sharedPrefs;
+    preferences.setBool(KegelApp.sessionActiveKey, false);
+  }
+
   @override
   Widget build(BuildContext context) {
     KegelColor color = new KegelColor();
@@ -63,6 +71,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
                 onPressed: () {
                   saveAndResetSession();
                   memberData.startNewSession();
+                  setSessionUnactive();
                   Navigator.of(context).pop();
                 },
                 child: const Text("Okay"),
@@ -90,6 +99,7 @@ class _NewSessionScreenState extends State<NewSessionScreen> {
               FlatButton(
                 onPressed: () {
                   memberData.startNewSession();
+                  setSessionUnactive();
                   Navigator.of(context).pop();
                 },
                 child: const Text("Okay"),

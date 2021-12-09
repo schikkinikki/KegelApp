@@ -23,6 +23,7 @@ class _SessionScreenWidgetState extends State<SessionScreenWidget> {
   SessionUtils sessionUtils = new SessionUtils();
   Future<SharedPreferences> sharedPrefs = SharedPreferences.getInstance();
   bool _isSessionRunning;
+  String _neuerKegelabend = "Neuer Kegelabend";
 
   //zum nächsten SessionScreen wechseln
   void switchScreen(var routeName) async {
@@ -35,8 +36,15 @@ class _SessionScreenWidgetState extends State<SessionScreenWidget> {
     switch (screenRoute) {
       case NewSessionScreen.routeName:
         if (_isSessionRunning) {
+          setState(() {
+            _neuerKegelabend = "Kegelabend fortsetzen";
+          });
+
           Navigator.of(context).pushNamed(NewSessionScreen.routeName);
         } else {
+          setState(() {
+            _neuerKegelabend = "Neuer Kegelabend";
+          });
           Navigator.pushNamed(context, PresentSelectScreen.routeName)
               .then((value) {
             setState(() {});
@@ -63,7 +71,6 @@ class _SessionScreenWidgetState extends State<SessionScreenWidget> {
       child: Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width * 0.9,
             child: Row(
               children: [
                 GestureDetector(
@@ -86,7 +93,7 @@ class _SessionScreenWidgetState extends State<SessionScreenWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          strings.sessionscreen_new_session,
+                          _neuerKegelabend,
                           style: TextStyle(fontSize: 18, color: color.greyText),
                         ),
                         Icon(Icons.arrow_forward, color: color.greyText),

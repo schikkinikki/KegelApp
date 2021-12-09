@@ -1,6 +1,7 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:KegelApp/models/MembersListClass.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
+import 'package:KegelApp/models/session_utils.dart';
 import 'package:flutter/material.dart';
 
 class SessionOverviewDialog extends StatefulWidget {
@@ -13,6 +14,7 @@ class SessionOverviewDialog extends StatefulWidget {
 
 class _SessionOverviewDialogState extends State<SessionOverviewDialog> {
   String displayedText = "Pumpe";
+  SessionUtils sessionUtils = new SessionUtils();
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +71,13 @@ class _SessionOverviewDialogState extends State<SessionOverviewDialog> {
                 SizedBox(
                   width: 10,
                 ),
-                Text(displayedText),
+                Container(
+                  width: 75,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(displayedText),
+                  ),
+                ),
                 SizedBox(
                   width: 17,
                 ),
@@ -84,7 +92,7 @@ class _SessionOverviewDialogState extends State<SessionOverviewDialog> {
                   key: Key(forwardButtonKey),
                 ),
                 SizedBox(
-                  width: 30,
+                  width: 23,
                 ),
                 IconButton(
                   icon: Icon(Icons.cancel),
@@ -104,7 +112,7 @@ class _SessionOverviewDialogState extends State<SessionOverviewDialog> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: FutureBuilder(
-                future: DBProvider.db.getAllKegelbruder(),
+                future: sessionUtils.returnAnwesendeSpieler(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return Center(

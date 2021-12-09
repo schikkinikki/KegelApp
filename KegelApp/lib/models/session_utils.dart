@@ -1,4 +1,5 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
+import 'package:KegelApp/models/kegelbruder.dart';
 import 'package:KegelApp/models/session.dart';
 
 class SessionUtils {
@@ -76,5 +77,19 @@ class SessionUtils {
     String name = sessionList[0].kegelbruder.name;
     String minPumpenName = name + ": " + minPumpe;
     return minPumpenName;
+  }
+
+  Future<List<Kegelbruder>> returnAnwesendeSpieler() async {
+    List<Kegelbruder> kegelbruderListe =
+        await DBProvider.db.getAllKegelbruder();
+    List<Kegelbruder> anwesendeSpieler = [];
+
+    kegelbruderListe.forEach((kegelbruder) {
+      if (kegelbruder.anwesend == 1) {
+        anwesendeSpieler.add(kegelbruder);
+      }
+    });
+
+    return anwesendeSpieler;
   }
 }

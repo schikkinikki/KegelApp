@@ -1,6 +1,7 @@
 import 'package:KegelApp/database/kegelAppDatabase.dart';
 import 'package:KegelApp/kegelapp_res/kegel_colors.dart';
 import 'package:KegelApp/models/kegelbruder.dart';
+import 'package:KegelApp/models/session_utils.dart';
 import 'package:flutter/material.dart';
 
 class KingSelectDialog extends StatefulWidget {
@@ -12,6 +13,7 @@ class _KingSelectDialogState extends State<KingSelectDialog> {
   KegelColor color = new KegelColor();
   int buttonPress = 1;
   bool isChecked = false;
+  SessionUtils sessionUtils = new SessionUtils();
 
   void changeKing(String name) async {
     List<Kegelbruder> allPlayer = await DBProvider.db.getAllKegelbruder();
@@ -56,7 +58,7 @@ class _KingSelectDialogState extends State<KingSelectDialog> {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Container(
-        height: 500,
+        height: MediaQuery.of(context).size.height * 0.75,
         width: 350,
         child: Column(
           children: [
@@ -91,7 +93,7 @@ class _KingSelectDialogState extends State<KingSelectDialog> {
             ),
             buttonPress == 1
                 ? FutureBuilder(
-                    future: DBProvider.db.getAllKegelbruder(),
+                    future: sessionUtils.returnAnwesendeSpieler(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         return Center(
@@ -126,7 +128,7 @@ class _KingSelectDialogState extends State<KingSelectDialog> {
                     },
                   )
                 : FutureBuilder(
-                    future: DBProvider.db.getAllKegelbruder(),
+                    future: sessionUtils.returnAnwesendeSpieler(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         return Center(

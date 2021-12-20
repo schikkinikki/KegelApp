@@ -72,6 +72,7 @@ class _SessionScreenWidgetState extends State<SessionScreenWidget> {
         children: [
           Container(
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 GestureDetector(
                   onTap: () => switchScreen(NewSessionScreen.routeName),
@@ -152,6 +153,7 @@ class _SessionScreenWidgetState extends State<SessionScreenWidget> {
             height: 15,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
                   height: 100,
@@ -226,6 +228,7 @@ class _SessionScreenWidgetState extends State<SessionScreenWidget> {
             height: 20,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
                 height: 100,
